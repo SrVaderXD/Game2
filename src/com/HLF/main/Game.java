@@ -39,6 +39,9 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	public UI ui;
 	
+	public static int fruits = 0;
+	public static int score = 0;
+	
 	public Game(){
 		addKeyListener(this);
 		setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
@@ -47,10 +50,10 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		
 		//Initializing objects
 		spritesheet = new Spritesheet("/spritesheet.png");
-		player = new Player(0,0,16,16,1,spritesheet.getSprite(32, 0,16,16));
+		player = new Player(0,0,16,16,2,spritesheet.getSprite(32, 0,16,16));
+		entities = new ArrayList<Entity>();
 		world = new World("/level1.png");
 		ui = new UI();
-		entities = new ArrayList<Entity>();
 		
 		entities.add(player);
 		

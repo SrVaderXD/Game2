@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import com.HLF.entities.Apple;
+import com.HLF.entities.Enemy;
+import com.HLF.entities.Entity;
 import com.HLF.main.Game;
 
 public class World {
@@ -30,14 +33,60 @@ public class World {
 						//Floor
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx*16,yy*16,Tile.TILE_FLOOR);
 					}else if(pixelAtual == 0xFFFFFFFF){
-						//Wall
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL);
+						//Wall type 1
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_1);
+					}else if(pixelAtual == 0xFFC0C0C0) {
+						//Wall type 2
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_2);
+					}else if(pixelAtual == 0xFFA0A0A0) {
+						//Wall type 3
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_3);
+					}else if(pixelAtual == 0xFF808080) {
+						//Wall type 4
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_4);
+					}else if(pixelAtual == 0xFF303030) {
+						//Wall type 5
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_5);
+					}else if(pixelAtual == 0xFF606060) {
+						//Wall type 6
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_6);
+					}else if(pixelAtual == 0xFF404040) {
+						//Wall type 7
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_7);
+					}else if(pixelAtual == 0xFF7F3F3F) {
+						//Wall type 8
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_8);
+					}else if(pixelAtual == 0xFF7F593F) {
+						//Wall type 9
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_9);
+					}else if(pixelAtual == 0xFF7F743F) {
+						//Wall type 10
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_10);
 					}else if(pixelAtual == 0xFF0026FF) {
 						//Player
 						Game.player.setX(xx*16);
 						Game.player.setY(yy*16);
 					}else if(pixelAtual == 0xFFFF0000) {
-						//Instanciar inimigo e adicionar a lista das entities
+						//Enemy type 1
+						Enemy e = new Enemy(xx*16,yy*16,16,16,0,Entity.ENEMY_TYPE_1_R);
+						Game.entities.add(e);
+					}else if(pixelAtual == 0xFF00FFFF) {
+						//Enemy type 2
+						Enemy e = new Enemy(xx*16,yy*16,16,16,0,Entity.ENEMY_TYPE_2_R);
+						Game.entities.add(e);
+					}else if(pixelAtual == 0xFFFF6A00) {
+						//Enemy type 3
+						Enemy e = new Enemy(xx*16,yy*16,16,16,0,Entity.ENEMY_TYPE_3_R);
+						Game.entities.add(e);
+					}else if(pixelAtual == 0xFFFDC2D4) {
+						//Enemy type 4
+						Enemy e = new Enemy(xx*16,yy*16,16,16,0,Entity.ENEMY_TYPE_4_R);
+						Game.entities.add(e);
+					}else if(pixelAtual == 0xFFFFD800) {
+						// Apple
+						Apple apple = new Apple(xx*16,yy*16,16,16,0,Entity.Apple_Sprite);
+						Game.entities.add(apple);
+						Game.fruits++;
 					}
 				}
 			}

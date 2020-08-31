@@ -44,7 +44,7 @@ public class Player extends Entity{
 	private void checkVictory() {
 		
 		if(Game.score == Game.fruits) {
-			//TODO
+			World.restartGame();
 		}
 		
 	}

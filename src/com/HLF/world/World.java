@@ -3,11 +3,13 @@ package com.HLF.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 import com.HLF.entities.Apple;
 import com.HLF.entities.Enemy;
 import com.HLF.entities.Entity;
+import com.HLF.entities.Player;
 import com.HLF.main.Game;
 
 public class World {
@@ -115,8 +117,13 @@ public class World {
 				(tiles[x4 + (y4*World.WIDTH)] instanceof WallTile));
 	}
 	
-	public static void restartGame(String level){
-		new Game();
+	public static void restartGame(){
+		Game.player = new Player(0,0,16,16,2,Game.spritesheet.getSprite(32,0,16,16));
+		Game.entities.clear();		
+		Game.entities.add(Game.player);
+		Game.fruits = 0;
+		Game.score = 0;
+		Game.world = new World("/level1.png");
 		return;
 	}
 	

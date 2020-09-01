@@ -15,7 +15,7 @@ import com.HLF.world.World;
 
 public class Entity {
 	
-	public static BufferedImage Apple_Sprite = Game.spritesheet.getSprite(32,96,16,16);
+	//Enemy sprites
 	public static BufferedImage ENEMY_TYPE_1_R = Game.spritesheet.getSprite(32,32,16,16);
 	public static BufferedImage ENEMY_TYPE_1_L = Game.spritesheet.getSprite(48,32,16,16);
 	public static BufferedImage ENEMY_TYPE_2_R = Game.spritesheet.getSprite(32,48,16,16);
@@ -24,6 +24,10 @@ public class Entity {
 	public static BufferedImage ENEMY_TYPE_3_L = Game.spritesheet.getSprite(48,64,16,16);
 	public static BufferedImage ENEMY_TYPE_4_R = Game.spritesheet.getSprite(32,80,16,16);
 	public static BufferedImage ENEMY_TYPE_4_L = Game.spritesheet.getSprite(48,80,16,16);
+	
+	//Fruit sprites
+	public static BufferedImage Apple_Sprite = Game.spritesheet.getSprite(32,96,16,16);
+	public static BufferedImage VulnerableFruit_Sprite = Game.spritesheet.getSprite(48, 96, 16, 16);
 	
 	protected double x;
 	protected double y;

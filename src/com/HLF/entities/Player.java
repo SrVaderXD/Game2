@@ -37,7 +37,7 @@ public class Player extends Entity{
 			y+=speed;
 		}
 		
-		checkCollisionWithApple();
+		checkCollisionWithItems();
 		checkVictory();
 	}
 
@@ -49,7 +49,7 @@ public class Player extends Entity{
 		
 	}
 
-	public void checkCollisionWithApple() {
+	public void checkCollisionWithItems() { // this will check collision with every item
 		
 		for(int i = 0; i < Game.entities.size(); i++) {
 			

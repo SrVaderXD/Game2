@@ -10,6 +10,7 @@ import com.HLF.entities.Apple;
 import com.HLF.entities.Enemy;
 import com.HLF.entities.Entity;
 import com.HLF.entities.Player;
+import com.HLF.entities.VulnerableFruit;
 import com.HLF.main.Game;
 
 public class World {
@@ -88,6 +89,12 @@ public class World {
 						// Apple
 						Apple apple = new Apple(xx*16,yy*16,16,16,0,Entity.Apple_Sprite);
 						Game.entities.add(apple);
+						Game.fruits++;
+				
+					}else if(pixelAtual == 0xFFFFB594) {
+						// VulnerableFruit
+						VulnerableFruit fruit = new VulnerableFruit(xx*16,yy*16,16,16,0,Entity.VulnerableFruit_Sprite);
+						Game.entities.add(fruit);
 						Game.fruits++;
 					}
 				}

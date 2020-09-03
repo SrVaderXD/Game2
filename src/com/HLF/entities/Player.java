@@ -56,8 +56,16 @@ public class Player extends Entity{
 			Entity current = Game.entities.get(i);
 			
 			if(current instanceof Apple) {
-				if(isColidding(this, current)) {
+				if(isColliding(this, current)) {
 					Game.score++;
+					Game.entities.remove(i);
+					return;
+				}
+			}
+			
+			if(current instanceof VulnerableFruit) {
+				if(isColliding(this, current)) {
+					//TODO vulberable mode 
 					Game.entities.remove(i);
 					return;
 				}

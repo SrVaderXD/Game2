@@ -16,7 +16,7 @@ public class VulnerableFruit extends Entity{
 	public void render(Graphics g) {
 		
 		frames++;
-		if(frames == 20) {
+		if(frames == 32) {
 			frames = 0;
 			
 			if(animation)

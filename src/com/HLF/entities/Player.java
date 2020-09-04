@@ -11,7 +11,7 @@ public class Player extends Entity{
 	
 	public boolean right,up,left,down;
 	
-	public int dir = 1;
+	public static int dir = 1;
 	
 	public BufferedImage sprite_left;
 
@@ -65,7 +65,7 @@ public class Player extends Entity{
 			
 			if(current instanceof VulnerableFruit) {
 				if(isColliding(this, current)) {
-					//TODO vulberable mode 
+					Enemy.vulnerable = true;
 					Game.entities.remove(i);
 					return;
 				}

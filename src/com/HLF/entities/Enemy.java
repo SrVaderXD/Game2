@@ -50,9 +50,8 @@ public class Enemy extends Entity{
 			}
 		}
 		
-		//System.out.println(vulnerable);
-		
-		//TODO vulnerable mode after eating something
+		System.out.println(vulnerable + " " + vulFrames);
+
 	}
 	
 	public void render(Graphics g) {

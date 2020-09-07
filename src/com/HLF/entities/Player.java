@@ -64,10 +64,12 @@ public class Player extends Entity{
 			}
 			
 			if(current instanceof VulnerableFruit) {
-				if(isColliding(this, current)) {
-					Enemy.vulnerable = true;
-					Game.entities.remove(i);
-					return;
+				if(Enemy.vulnerable == false) {
+					if(isColliding(this, current)) {
+						Enemy.vulnerable = true;
+						Game.entities.remove(i);
+						return;
+					}
 				}
 			}
 		}

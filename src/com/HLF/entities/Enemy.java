@@ -15,6 +15,8 @@ public class Enemy extends Entity{
 	
 	public static boolean vulnerable = false;
 	public int vulFrames = 0;
+	private int ghostFrames = 0, blinkFrames = 0;
+	private boolean animation = false, blink = false;
 	
 
 	public Enemy(int x, int y, int width, int height,int speed, BufferedImage sprite) {
@@ -40,23 +42,57 @@ public class Enemy extends Entity{
 					path = AStar.findPath(Game.world, start, end);
 				}
 				
+			animation = false;	
 			vulFrames = 0;
 		}
 		
-		else {
+		else { //TODO ghosts run from player
 			vulFrames++;
-			if(vulFrames == 60) {
+			
+			if(vulFrames == 120)
+				animation = true;
+			
+			if(vulFrames == 360) {
 				vulnerable = false;
+				blink = false;
 			}
+			
 		}
 		
-		System.out.println(vulnerable + " " + vulFrames);
+		System.out.println("vulnerable:"+vulnerable + " " + vulFrames+"\n");
+		System.out.println("animation:"+animation +"\n");
+		System.out.println("blink:"+blink + " " + blinkFrames+"\n");
 
 	}
 	
 	public void render(Graphics g) {
 		
-		super.render(g);
+		if(vulnerable == false)
+			super.render(g);
 		
+		else if(vulnerable == true) {
+			
+			if(animation) {
+				blinkFrames++;
+				
+				if(blinkFrames == 30) {
+					blinkFrames = 0;
+					
+					if(blink)
+						blink = false;
+					
+					else
+						blink = true;
+				}
+			}
+			
+			if(blink == false) {
+				g.drawImage(Entity.ENEMY_GHOST_TYPE_1,this.getX() - Camera.x,this.getY() - Camera.y,null);
+			}
+
+			if(blink == true) {
+				g.drawImage(Entity.ENEMY_GHOST_TYPE_2,this.getX() - Camera.x,this.getY() - Camera.y,null);
+			}
+		}
 	}
 }

@@ -71,19 +71,19 @@ public class World {
 						Game.player.setY(yy*16);
 					}else if(pixelAtual == 0xFFFF0000) {
 						//Enemy type 1
-						Enemy e = new Enemy(xx*16,yy*16,16,16,0,Entity.ENEMY_TYPE_1_R);
+						Enemy e = new Enemy(xx*16,yy*16,16,16,1,Entity.ENEMY_TYPE_1_R);
 						Game.entities.add(e);
 					}else if(pixelAtual == 0xFF00FFFF) {
 						//Enemy type 2
-						Enemy e = new Enemy(xx*16,yy*16,16,16,0,Entity.ENEMY_TYPE_2_R);
+						Enemy e = new Enemy(xx*16,yy*16,16,16,1,Entity.ENEMY_TYPE_2_R);
 						Game.entities.add(e);
 					}else if(pixelAtual == 0xFFFF6A00) {
 						//Enemy type 3
-						Enemy e = new Enemy(xx*16,yy*16,16,16,0,Entity.ENEMY_TYPE_3_R);
+						Enemy e = new Enemy(xx*16,yy*16,16,16,1,Entity.ENEMY_TYPE_3_R);
 						Game.entities.add(e);
 					}else if(pixelAtual == 0xFFFDC2D4) {
 						//Enemy type 4
-						Enemy e = new Enemy(xx*16,yy*16,16,16,0,Entity.ENEMY_TYPE_4_R);
+						Enemy e = new Enemy(xx*16,yy*16,16,16,1,Entity.ENEMY_TYPE_4_R);
 						Game.entities.add(e);
 					}else if(pixelAtual == 0xFFFFD800) {
 						// Apple

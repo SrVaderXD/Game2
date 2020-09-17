@@ -1,5 +1,6 @@
 package com.HLF.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -113,16 +114,20 @@ public class Entity {
 				Vector2i target = path.get(path.size() - 1).tile;
 				//xprev = x;
 				//yprev = y;
-				if(x < target.x * 16) {
-					x++;
-				}else if(x > target.x * 16) {
-					x--;
+				if(x < target.x * 16) { //right
+					x+=speed;
+					Enemy.dir = 1;
+				}else if(x > target.x * 16) { //left
+					x-=speed;
+					Enemy.dir = 2;
 				}
 				
-				if(y < target.y * 16) {
-					y++;
-				}else if(y > target.y * 16) {
-					y--;
+				if(y < target.y * 16) { //down
+					y+=speed;
+					Enemy.dir = 3;
+				}else if(y > target.y * 16) { //up
+					y-=speed;
+					Enemy.dir = 4;
 				}
 				
 				if(x == target.x * 16 && y == target.y * 16) {
@@ -142,8 +147,6 @@ public class Entity {
 	
 	public void render(Graphics g) {
 		g.drawImage(sprite,this.getX() - Camera.x,this.getY() - Camera.y,null);
-		//g.setColor(Color.red);
-		//g.fillRect(this.getX() + maskx - Camera.x,this.getY() + masky - Camera.y,mwidth,mheight);
 	}
 	
 }

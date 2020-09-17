@@ -15,10 +15,11 @@ public class Enemy extends Entity{
 	
 	public static boolean vulnerable = false;
 	public int vulFrames = 0;
-	private int ghostFrames = 0, blinkFrames = 0;
+	private int blinkFrames = 0;
 	private boolean animation = false, blink = false;
 	
-
+	public static int dir = 1;
+	
 	public Enemy(int x, int y, int width, int height,int speed, BufferedImage sprite) {
 		super(x, y, width, height,speed,sprite);
 	}
@@ -30,7 +31,7 @@ public class Enemy extends Entity{
 	
 			if(path == null || path.size() == 0) {
 					Vector2i start = new Vector2i(((int)(x/16)),((int)(y/16)));
-					Vector2i end = new Vector2i(((int)(Game.player.x/16)),((int)(Game.player.y/16)));
+					Vector2i end = new Vector2i(((int)(Game.player.x/16)),((int)(-Game.player.y/16)));
 					path = AStar.findPath(Game.world, start, end);
 				}
 			
@@ -46,7 +47,25 @@ public class Enemy extends Entity{
 			vulFrames = 0;
 		}
 		
-		else { //TODO ghosts run from player
+		else {
+			
+			if(path == null || path.size() == 0) {
+				Vector2i start = new Vector2i(((int)(x/16)),((int)(y/16)));
+				Vector2i end = new Vector2i(xEscape(((int)(Game.player.x/16)),((int)(x/16))), 
+						yEscape(((int)(Game.player.y/16)),((int)(y/16))));
+				
+				path = AStar.findPath(Game.world, start, end);
+			}
+		
+			followPath(path);
+			
+			if(x % 16 == 0 && y % 16 == 0) {
+				Vector2i start = new Vector2i(((int)(x/16)),((int)(y/16)));
+				Vector2i end = new Vector2i(xEscape(((int)(Game.player.x/16)),((int)(x/16))), 
+						yEscape(((int)(Game.player.y/16)),((int)(y/16))));
+				path = AStar.findPath(Game.world, start, end);
+			}
+			
 			vulFrames++;
 			
 			if(vulFrames == 120)
@@ -56,20 +75,14 @@ public class Enemy extends Entity{
 				vulnerable = false;
 				blink = false;
 			}
-			
 		}
-		
-		System.out.println("vulnerable:"+vulnerable + " " + vulFrames+"\n");
-		System.out.println("animation:"+animation +"\n");
-		System.out.println("blink:"+blink + " " + blinkFrames+"\n");
-
 	}
 	
 	public void render(Graphics g) {
 		
-		if(vulnerable == false)
+		if(vulnerable == false) 
 			super.render(g);
-		
+					
 		else if(vulnerable == true) {
 			
 			if(animation) {
@@ -94,5 +107,34 @@ public class Enemy extends Entity{
 				g.drawImage(Entity.ENEMY_GHOST_TYPE_2,this.getX() - Camera.x,this.getY() - Camera.y,null);
 			}
 		}
+	}
+	
+	private int xEscape(int xplayer, int xenemy) {
+		int Dx, dx;
+		
+		Dx = (xplayer - xenemy);
+		
+		if(Dx > 0)
+			dx = 1;
+		
+		else
+			dx = -1;
+		
+		return (xenemy + (dx*Dx));
+	}
+	
+	private int yEscape(int yplayer, int yenemy) {
+		
+		int Dy, dy;
+		
+		Dy = (yplayer - yenemy);
+		
+		if(Dy > 0)
+			dy = 1;
+		
+		else
+			dy = -1;
+		
+		return (yenemy + (dy*Dy));
 	}
 }

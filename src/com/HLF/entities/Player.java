@@ -22,23 +22,29 @@ public class Player extends Entity{
 	
 	public void tick(){
 		depth = 1;
+		
+		System.out.println("xatual: "+x+" "+"yatual: "+y);
+		
 		if(right && World.isFree((int)(x+speed),this.getY())) {
 			x+=speed;
 			dir = 1;
 		}
 		else if(left && World.isFree((int)(x-speed),this.getY())) {
 			x-=speed;
-			dir = -1;
+			dir = 2;
 		}
 		if(up && World.isFree(this.getX(),(int)(y-speed))){
 			y-=speed;
+			//dir = 3;
 		}
 		else if(down && World.isFree(this.getX(),(int)(y+speed))){
 			y+=speed;
+			//dir = 4;
 		}
 		
 		checkCollisionWithItems();
 		checkVictory();
+		System.out.println("xdepois: "+x+" "+"ydepois: "+y);
 	}
 
 	private void checkVictory() {
@@ -82,7 +88,7 @@ public class Player extends Entity{
 			super.render(g);
 		}
 		
-		else {
+		else if(dir == 2){
 			g.drawImage(sprite_left,this.getX() - Camera.x,this.getY() - Camera.y,null);
 		}
 	}

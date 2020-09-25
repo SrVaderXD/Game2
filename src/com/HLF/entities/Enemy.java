@@ -31,7 +31,7 @@ public class Enemy extends Entity{
 	
 			if(path == null || path.size() == 0) {
 					Vector2i start = new Vector2i(((int)(x/16)),((int)(y/16)));
-					Vector2i end = new Vector2i(((int)(Game.player.x/16)),((int)(-Game.player.y/16)));
+					Vector2i end = new Vector2i(((int)(Game.player.x/16)),((int)(Game.player.y/16)));
 					path = AStar.findPath(Game.world, start, end);
 				}
 			

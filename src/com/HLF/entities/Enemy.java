@@ -2,8 +2,6 @@ package com.HLF.entities;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Random;
-
 import com.HLF.main.Game;
 import com.HLF.world.AStar;
 import com.HLF.world.Camera;
@@ -79,11 +77,8 @@ public class Enemy extends Entity{
 	}
 	
 	public void render(Graphics g) {
-		
-		if(vulnerable == false) 
-			super.render(g);
-					
-		else if(vulnerable == true) {
+							
+		if(vulnerable == true) {
 			
 			if(animation) {
 				blinkFrames++;

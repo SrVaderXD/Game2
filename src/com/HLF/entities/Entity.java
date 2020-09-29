@@ -1,6 +1,5 @@
 package com.HLF.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -17,25 +16,25 @@ import com.HLF.world.World;
 public class Entity {
 	
 	//Enemy sprites
-	public static BufferedImage ENEMY_TYPE_1_R = Game.spritesheet.getSprite(32,32,16,16);
-	public static BufferedImage ENEMY_TYPE_1_L = Game.spritesheet.getSprite(48,32,16,16);
-	public static BufferedImage ENEMY_TYPE_1_U = Game.spritesheet.getSprite(64,32,16,16);
-	public static BufferedImage ENEMY_TYPE_1_D = Game.spritesheet.getSprite(80,32,16,16);
+	public static BufferedImage ENEMY_RED_R = Game.spritesheet.getSprite(32,32,16,16);
+	public static BufferedImage ENEMY_RED_L = Game.spritesheet.getSprite(48,32,16,16);
+	public static BufferedImage ENEMY_RED_U = Game.spritesheet.getSprite(64,32,16,16);
+	public static BufferedImage ENEMY_RED_D = Game.spritesheet.getSprite(80,32,16,16);
 	
-	public static BufferedImage ENEMY_TYPE_2_R = Game.spritesheet.getSprite(32,48,16,16);
-	public static BufferedImage ENEMY_TYPE_2_L = Game.spritesheet.getSprite(48,48,16,16);
-	public static BufferedImage ENEMY_TYPE_2_U = Game.spritesheet.getSprite(64,48,16,16);
-	public static BufferedImage ENEMY_TYPE_2_D = Game.spritesheet.getSprite(80,48,16,16);
+	public static BufferedImage ENEMY_BLUE_R = Game.spritesheet.getSprite(32,48,16,16);
+	public static BufferedImage ENEMY_BLUE_L = Game.spritesheet.getSprite(48,48,16,16);
+	public static BufferedImage ENEMY_BLUE_U = Game.spritesheet.getSprite(64,48,16,16);
+	public static BufferedImage ENEMY_BLUE_D = Game.spritesheet.getSprite(80,48,16,16);
 	
-	public static BufferedImage ENEMY_TYPE_3_R = Game.spritesheet.getSprite(32,64,16,16);
-	public static BufferedImage ENEMY_TYPE_3_L = Game.spritesheet.getSprite(48,64,16,16);
-	public static BufferedImage ENEMY_TYPE_3_U = Game.spritesheet.getSprite(64,64,16,16);
-	public static BufferedImage ENEMY_TYPE_3_D = Game.spritesheet.getSprite(80,64,16,16);
+	public static BufferedImage ENEMY_ORANGE_R = Game.spritesheet.getSprite(32,64,16,16);
+	public static BufferedImage ENEMY_ORANGE_L = Game.spritesheet.getSprite(48,64,16,16);
+	public static BufferedImage ENEMY_ORANGE_U = Game.spritesheet.getSprite(64,64,16,16);
+	public static BufferedImage ENEMY_ORANGE_D = Game.spritesheet.getSprite(80,64,16,16);
 	
-	public static BufferedImage ENEMY_TYPE_4_R = Game.spritesheet.getSprite(32,80,16,16);
-	public static BufferedImage ENEMY_TYPE_4_L = Game.spritesheet.getSprite(48,80,16,16);
-	public static BufferedImage ENEMY_TYPE_4_U = Game.spritesheet.getSprite(64,80,16,16);
-	public static BufferedImage ENEMY_TYPE_4_D = Game.spritesheet.getSprite(80,80,16,16);
+	public static BufferedImage ENEMY_PINK_R = Game.spritesheet.getSprite(32,80,16,16);
+	public static BufferedImage ENEMY_PINK_L = Game.spritesheet.getSprite(48,80,16,16);
+	public static BufferedImage ENEMY_PINK_U = Game.spritesheet.getSprite(64,80,16,16);
+	public static BufferedImage ENEMY_PINK_D = Game.spritesheet.getSprite(80,80,16,16);
 	
 	public static BufferedImage ENEMY_GHOST_TYPE_1 = Game.spritesheet.getSprite(32,96,16,16);
 	public static BufferedImage ENEMY_GHOST_TYPE_2 = Game.spritesheet.getSprite(48,96,16,16);

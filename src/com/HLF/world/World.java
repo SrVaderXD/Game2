@@ -7,9 +7,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.HLF.entities.Apple;
-import com.HLF.entities.Enemy;
+import com.HLF.entities.BlueEnemy;
 import com.HLF.entities.Entity;
+import com.HLF.entities.OrangeEnemy;
+import com.HLF.entities.PinkEnemy;
 import com.HLF.entities.Player;
+import com.HLF.entities.RedEnemy;
 import com.HLF.entities.VulnerableFruit;
 import com.HLF.main.Game;
 
@@ -71,19 +74,19 @@ public class World {
 						Game.player.setY(yy*16);
 					}else if(pixelAtual == 0xFFFF0000) {
 						//Enemy type 1
-						Enemy e = new Enemy(xx*16,yy*16,16,16,1,Entity.ENEMY_TYPE_1_R);
+						RedEnemy e = new RedEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_RED_R);
 						Game.entities.add(e);
 					}else if(pixelAtual == 0xFF00FFFF) {
 						//Enemy type 2
-						Enemy e = new Enemy(xx*16,yy*16,16,16,1,Entity.ENEMY_TYPE_2_R);
+						BlueEnemy e = new BlueEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_BLUE_R);
 						Game.entities.add(e);
 					}else if(pixelAtual == 0xFFFF6A00) {
 						//Enemy type 3
-						Enemy e = new Enemy(xx*16,yy*16,16,16,1,Entity.ENEMY_TYPE_3_R);
+						OrangeEnemy e = new OrangeEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_ORANGE_R);
 						Game.entities.add(e);
 					}else if(pixelAtual == 0xFFFDC2D4) {
 						//Enemy type 4
-						Enemy e = new Enemy(xx*16,yy*16,16,16,1,Entity.ENEMY_TYPE_4_R);
+						PinkEnemy e = new PinkEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_PINK_R);
 						Game.entities.add(e);
 					}else if(pixelAtual == 0xFFFFD800) {
 						// Apple

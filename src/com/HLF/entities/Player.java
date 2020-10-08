@@ -112,7 +112,7 @@ public class Player extends Entity{
 				}
 			}
 			
-			if(current instanceof VulnerableFruit) {
+			if(current instanceof Cookie) {
 				if(Enemy.vulnerable == false) {
 					if(isColliding(this, current)) {
 						Enemy.vulnerable = true;

@@ -42,7 +42,11 @@ public class Entity {
 
 	//Fruit sprites
 	public static BufferedImage Apple_Sprite = Game.spritesheet.getSprite(32,112,16,16);
-	public static BufferedImage VulnerableFruit_Sprite = Game.spritesheet.getSprite(48, 112, 16, 16);
+	public static BufferedImage Cookie_Sprite = Game.spritesheet.getSprite(48, 112, 16, 16);
+	public static BufferedImage Banana_Sprite = Game.spritesheet.getSprite(64,112,16,16);
+	public static BufferedImage Strawberry_Sprite = Game.spritesheet.getSprite(80,112,16,16);
+	public static BufferedImage Kiwi_Sprite = Game.spritesheet.getSprite(96,112,16,16);
+	
 	
 	protected double x;
 	protected double y;

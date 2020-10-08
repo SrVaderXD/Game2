@@ -7,13 +7,16 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.HLF.entities.Apple;
+import com.HLF.entities.Banana;
 import com.HLF.entities.BlueEnemy;
+import com.HLF.entities.Cookie;
 import com.HLF.entities.Entity;
+import com.HLF.entities.Kiwi;
 import com.HLF.entities.OrangeEnemy;
 import com.HLF.entities.PinkEnemy;
 import com.HLF.entities.Player;
 import com.HLF.entities.RedEnemy;
-import com.HLF.entities.VulnerableFruit;
+import com.HLF.entities.Strawberry;
 import com.HLF.main.Game;
 
 public class World {
@@ -88,18 +91,33 @@ public class World {
 						//Enemy type 4
 						PinkEnemy e = new PinkEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_PINK_R);
 						Game.entities.add(e);
-					}else if(pixelAtual == 0xFFFFD800) {
+					}else if(pixelAtual == 0xFF7F0000) {
 						// Apple
 						Apple apple = new Apple(xx*16,yy*16,16,16,0,Entity.Apple_Sprite);
 						Game.entities.add(apple);
 						Game.fruits++;
-				
 					}else if(pixelAtual == 0xFFFFB594) {
-						// VulnerableFruit
-						VulnerableFruit fruit = new VulnerableFruit(xx*16,yy*16,16,16,0,Entity.VulnerableFruit_Sprite);
+						// Cookie
+						Cookie fruit = new Cookie(xx*16,yy*16,16,16,0,Entity.Cookie_Sprite);
 						Game.entities.add(fruit);
 						Game.fruits++;
-					}
+						
+					}else if(pixelAtual == 0xFFFFD800) {
+						// Banana
+						Banana fruit = new Banana(xx*16,yy*16,16,16,0,Entity.Banana_Sprite);
+						Game.entities.add(fruit);
+						Game.fruits++;
+					}else if(pixelAtual == 0xFFFF00DC) {
+						// Strawberry
+						Strawberry fruit = new Strawberry(xx*16,yy*16,16,16,0,Entity.Strawberry_Sprite);
+						Game.entities.add(fruit);
+						Game.fruits++;
+					}else if(pixelAtual == 0xFF4CFF00) {
+						// Kiwi
+						Kiwi fruit = new Kiwi(xx*16,yy*16,16,16,0,Entity.Kiwi_Sprite);
+						Game.entities.add(fruit);
+						Game.fruits++;
+					}	
 				}
 			}
 		} catch (IOException e) {

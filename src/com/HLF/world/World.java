@@ -100,7 +100,6 @@ public class World {
 						// Cookie
 						Cookie fruit = new Cookie(xx*16,yy*16,16,16,0,Entity.Cookie_Sprite);
 						Game.entities.add(fruit);
-						Game.fruits++;
 						
 					}else if(pixelAtual == 0xFFFFD800) {
 						// Banana

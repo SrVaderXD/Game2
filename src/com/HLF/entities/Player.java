@@ -88,14 +88,19 @@ public class Player extends Entity{
 			}
 		}
 		checkCollisionWithItems();
+		checkNextStage();
 		checkVictory();
 		
 	}
 
 	private void checkVictory() {
 		
-	//TODO
+		//TODO
 		
+	}
+	
+	private void checkNextStage() {
+		//TODO
 	}
 
 	public void checkCollisionWithItems() { // this will check collision with every item
@@ -105,6 +110,30 @@ public class Player extends Entity{
 			Entity current = Game.entities.get(i);
 			
 			if(current instanceof Apple) {
+				if(isColliding(this, current)) {
+					Game.score++;
+					Game.entities.remove(i);
+					return;
+				}
+			}
+			
+			if(current instanceof Banana) {
+				if(isColliding(this, current)) {
+					Game.score++;
+					Game.entities.remove(i);
+					return;
+				}
+			}
+				
+			if(current instanceof Strawberry) {
+				if(isColliding(this, current)) {
+					Game.score++;
+					Game.entities.remove(i);
+					return;
+				}
+			}
+				
+			if(current instanceof Kiwi) {
 				if(isColliding(this, current)) {
 					Game.score++;
 					Game.entities.remove(i);

@@ -95,8 +95,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			Entity e = entities.get(i);
 			e.tick();
 		}
-
-		
 		
 	}
 	
@@ -111,14 +109,12 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		g.fillRect(0, 0,WIDTH,HEIGHT);
 		
 		/*Game Render*/
-		//Graphics2D g2 = (Graphics2D) g;
 		world.render(g);
 		Collections.sort(entities,Entity.nodeSorter);
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.render(g);
 		}
-		/***/
 		g.dispose();
 		g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0,WIDTH*SCALE,HEIGHT*SCALE,null);
@@ -172,8 +168,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN ||
 				e.getKeyCode() == KeyEvent.VK_S) {
 			player.down = true;
-			
-			
 			
 		}
 	

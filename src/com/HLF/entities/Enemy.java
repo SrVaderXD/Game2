@@ -74,6 +74,8 @@ public class Enemy extends Entity{
 				blink = false;
 			}
 		}
+		
+		collisionWithPlayer();
 	}
 	
 	public void render(Graphics g) {
@@ -131,5 +133,19 @@ public class Enemy extends Entity{
 			dy = -1;
 		
 		return (yenemy + (dy*Dy));
+	}
+	
+	private void collisionWithPlayer() {
+		
+		if(!vulnerable && Entity.isColliding(this, Game.player)) {
+			//TODO PLAYER WILL DIE AND DISAPPEAR AND LOSE LIFE
+			
+			Player.death = true;
+		}
+		
+		else if(vulnerable && Entity.isColliding(this, Game.player)) {
+			//TODO ENEMY DISAPPEAR, SCORE WILL INCREASE AND THEY WILL RESPAWN
+
+		}
 	}
 }

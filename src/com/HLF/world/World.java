@@ -3,9 +3,8 @@ package com.HLF.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
-
 import com.HLF.entities.Apple;
 import com.HLF.entities.Banana;
 import com.HLF.entities.BlueEnemy;
@@ -17,6 +16,7 @@ import com.HLF.entities.PinkEnemy;
 import com.HLF.entities.Player;
 import com.HLF.entities.RedEnemy;
 import com.HLF.entities.Strawberry;
+import com.HLF.graficos.Spritesheet;
 import com.HLF.main.Game;
 
 public class World {
@@ -79,18 +79,22 @@ public class World {
 						//Enemy type 1
 						RedEnemy e = new RedEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_RED_R);
 						Game.entities.add(e);
+						Game.enemies.add(e);
 					}else if(pixelAtual == 0xFF00FFFF) {
 						//Enemy type 2
 						BlueEnemy e = new BlueEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_BLUE_R);
 						Game.entities.add(e);
+						Game.enemies.add(e);
 					}else if(pixelAtual == 0xFFFF6A00) {
 						//Enemy type 3
 						OrangeEnemy e = new OrangeEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_ORANGE_R);
 						Game.entities.add(e);
+						Game.enemies.add(e);
 					}else if(pixelAtual == 0xFFFDC2D4) {
 						//Enemy type 4
 						PinkEnemy e = new PinkEnemy(xx*16,yy*16,16,16,1,Entity.ENEMY_PINK_R);
 						Game.entities.add(e);
+						Game.enemies.add(e);
 					}else if(pixelAtual == 0xFF7F0000) {
 						// Apple
 						Apple apple = new Apple(xx*16,yy*16,16,16,0,Entity.Apple_Sprite);
@@ -144,15 +148,19 @@ public class World {
 				(tiles[x4 + (y4*World.WIDTH)] instanceof WallTile));
 	}
 	
-	public static void restartGame(){
-		Game.player = new Player(0,0,16,16,2,Game.spritesheet.getSprite(32,0,16,16));
-		Game.entities.clear();		
-		Game.entities.add(Game.player);
+	/*public static void restartGanes(String map) {
+
 		Game.fruits = 0;
-		Game.score = 0;
-		Game.world = new World("/level1.png");
+		Game.entities.clear();
+		Game.entities = new ArrayList<Entity>();
+		Game.spritesheet = new Spritesheet("/spritesheet.png");
+		
+		Game.player = new Player(0,0,16,16,2,Game.spritesheet.getSprite(32,0,16,16));
+		Game.entities.add(Game.player);
+		Game.world = new World(map);
+
 		return;
-	}
+	}*/
 	
 	public void render(Graphics g){
 		int xstart = Camera.x >> 4;

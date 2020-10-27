@@ -3,8 +3,14 @@ package com.HLF.entities;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.HLF.main.Game;
+
 public class BlueEnemy extends Enemy{
 
+	public static boolean bDead = false;
+	public static int blueTime = 360; // red respawn time
+	public static int curBlueTime = 0;
+	
 	public BlueEnemy(int x, int y, int width, int height, int speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, sprite);
 	}
@@ -32,6 +38,23 @@ public class BlueEnemy extends Enemy{
 		
 		else {
 			super.render(g);
+		}
+	}
+	
+	public void collisionWithPlayer() {
+		
+		if(!vulnerable && Entity.isColliding(this, Game.player)) {
+			//TODO player death animation
+			
+			//World.restartGanes("/level1.png");
+		}
+		
+		else if(vulnerable && Entity.isColliding(this, Game.player)) {
+			//TODO ENEMY DISAPPEAR, SCORE WILL INCREASE AND THEY WILL RESPAWN
+			
+			bDead = true;
+			Game.entities.remove(this);
+			Game.enemies.remove(this);
 		}
 	}
 

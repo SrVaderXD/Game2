@@ -11,8 +11,11 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.swing.JFrame;
 
+import com.HLF.entities.Enemy;
+import com.HLF.entities.EnemySpawn;
 import com.HLF.entities.Entity;
 import com.HLF.entities.Player;
 import com.HLF.graficos.Spritesheet;
@@ -33,9 +36,12 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 
 	public static List<Entity> entities;
+	public static List<Enemy> enemies;
 	public static Spritesheet spritesheet;
 	public static World world;
 	public static Player player;
+	
+	public static EnemySpawn eSpawn;
 	
 	public UI ui;
 	
@@ -50,13 +56,15 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		
 		//Initializing objects
 		spritesheet = new Spritesheet("/spritesheet.png");
-		player = new Player(0,0,16,16,2,spritesheet.getSprite(32, 0,16,16));
+		player = new Player(0,0,16,16,2,spritesheet.getSprite(32,0,16,16));
 		entities = new ArrayList<Entity>();
+		enemies = new ArrayList<Enemy>();
 		world = new World("/level1.png");
+		eSpawn = new EnemySpawn();
 		ui = new UI();
 		
-		entities.add(player);
 		
+		entities.add(player);		
 	}
 	
 	public void initFrame(){
@@ -95,6 +103,8 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			Entity e = entities.get(i);
 			e.tick();
 		}
+		
+		eSpawn.tick();
 		
 	}
 	

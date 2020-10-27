@@ -7,14 +7,15 @@ import com.HLF.world.AStar;
 import com.HLF.world.Camera;
 import com.HLF.world.Vector2i;
 
-
-
 public class Enemy extends Entity{
 	
 	public static boolean vulnerable = false;
-	public int vulFrames = 0;
-	private int blinkFrames = 0;
-	private boolean animation = false, blink = false;
+	public static int vulFrames = 0;
+	public static int blinkFrames = 0;
+	public static boolean animation = false, blink = false;
+
+	public int time = 360; // respawn time
+	public int curTime = 0;
 	
 	public static int dir = 1;
 	
@@ -76,6 +77,14 @@ public class Enemy extends Entity{
 		}
 		
 		collisionWithPlayer();
+		System.out.println("REDTIME:"+RedEnemy.curRedTime);
+		System.out.println("PINKTIME:"+PinkEnemy.curPinkTime);
+		System.out.println("ORANGETIME:"+OrangeEnemy.curOrangeTime);
+		System.out.println("BLUETIME:"+BlueEnemy.curBlueTime);
+		//System.out.println("VERMELHO MORTO:"+RedEnemy.rDead);
+		//System.out.println("ROSA MORTO:"+PinkEnemy.pDead);
+		//System.out.println("LARANJA MORTO:"+OrangeEnemy.oDead);
+		//System.out.println("AZUL MORTO:"+BlueEnemy.bDead);
 	}
 	
 	public void render(Graphics g) {
@@ -135,17 +144,7 @@ public class Enemy extends Entity{
 		return (yenemy + (dy*Dy));
 	}
 	
-	private void collisionWithPlayer() {
+	public void collisionWithPlayer() {
 		
-		if(!vulnerable && Entity.isColliding(this, Game.player)) {
-			//TODO PLAYER WILL DIE AND DISAPPEAR AND LOSE LIFE
-			
-			Player.death = true;
-		}
-		
-		else if(vulnerable && Entity.isColliding(this, Game.player)) {
-			//TODO ENEMY DISAPPEAR, SCORE WILL INCREASE AND THEY WILL RESPAWN
-
-		}
 	}
 }

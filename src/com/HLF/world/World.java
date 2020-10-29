@@ -3,7 +3,6 @@ package com.HLF.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import com.HLF.entities.Apple;
 import com.HLF.entities.Banana;
@@ -13,10 +12,8 @@ import com.HLF.entities.Entity;
 import com.HLF.entities.Kiwi;
 import com.HLF.entities.OrangeEnemy;
 import com.HLF.entities.PinkEnemy;
-import com.HLF.entities.Player;
 import com.HLF.entities.RedEnemy;
 import com.HLF.entities.Strawberry;
-import com.HLF.graficos.Spritesheet;
 import com.HLF.main.Game;
 
 public class World {

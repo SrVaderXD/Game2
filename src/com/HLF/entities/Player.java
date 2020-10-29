@@ -135,12 +135,13 @@ public class Player extends Entity{
 			}
 			
 			if(current instanceof Cookie) {
-				if(Enemy.vulnerable == false) {
-					if(isColliding(this, current)) {
-						Enemy.vulnerable = true;
-						Game.entities.remove(i);
-						return;
-					}
+				if(isColliding(this, current)) {
+					BlueEnemy.bVulnerable = true;
+					OrangeEnemy.oVulnerable = true;
+					PinkEnemy.pVulnerable = true;
+					RedEnemy.rVulnerable = true;
+					Game.entities.remove(i);
+					return;
 				}
 			}
 		}

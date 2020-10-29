@@ -75,7 +75,6 @@ public class Entity {
 	
 	public static Comparator<Entity> nodeSorter = new Comparator<Entity>() {
 		
-		@Override
 		public int compare(Entity n0,Entity n1) {
 			if(n1.depth < n0.depth)
 				return +1;

@@ -10,12 +10,14 @@ import com.HLF.world.Vector2i;
 
 public class RedEnemy extends Enemy{
 	
+	public static int rDir = 1;
+	
 	public static boolean rVulnerable = false;
 	public int rVulFrames = 0, rBlinkFrames = 0;
 	public boolean rAnimation = false, rBlink = false;
 	
 	public static boolean rDead = false;
-	public static int redTime = 360; // red respawn time
+	public static int redTime = 300; // red respawn time
 	public static int curRedTime = 0;
 
 	public RedEnemy(int x, int y, int width, int height, int speed, BufferedImage sprite) {
@@ -82,19 +84,19 @@ public class RedEnemy extends Enemy{
 
 		if(!rVulnerable) {
 		
-			if(Enemy.dir == 1) {
+			if(rDir == 1) {
 				g.drawImage(Entity.ENEMY_RED_R,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 2) {
+			else if(rDir == 2) {
 				g.drawImage(Entity.ENEMY_RED_L,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 3) {
+			else if(rDir == 3) {
 				g.drawImage(Entity.ENEMY_RED_D,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 4) {
+			else if(rDir == 4) {
 				g.drawImage(Entity.ENEMY_RED_U,this.getX(),this.getY(),null);
 			}
 		}

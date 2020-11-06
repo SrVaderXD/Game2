@@ -2,7 +2,6 @@ package com.HLF.entities;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import com.HLF.main.Game;
 import com.HLF.world.AStar;
 import com.HLF.world.Camera;
@@ -10,12 +9,14 @@ import com.HLF.world.Vector2i;
 
 public class PinkEnemy extends Enemy{
 	
+	public static int pDir = 1;
+	
 	public static boolean pVulnerable = false;
 	public int pVulFrames = 0, pBlinkFrames = 0;
 	public boolean pAnimation = false, pBlink = false;
 	
 	public static boolean pDead = false;
-	public static int pinkTime = 360; // pink respawn time
+	public static int pinkTime = 300; // pink respawn time
 	public static int curPinkTime = 0;
 
 	public PinkEnemy(int x, int y, int width, int height, int speed, BufferedImage sprite) {
@@ -82,19 +83,19 @@ public class PinkEnemy extends Enemy{
 		
 		if(!pVulnerable) {
 			
-			if(Enemy.dir == 1) {
+			if(pDir == 1) {
 				g.drawImage(Entity.ENEMY_PINK_R,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 2) {
+			else if(pDir == 2) {
 				g.drawImage(Entity.ENEMY_PINK_L,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 3) {
+			else if(pDir == 3) {
 				g.drawImage(Entity.ENEMY_PINK_D,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 4) {
+			else if(pDir == 4) {
 				g.drawImage(Entity.ENEMY_PINK_U,this.getX(),this.getY(),null);
 			}
 		}

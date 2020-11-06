@@ -3,7 +3,9 @@ package com.HLF.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 import com.HLF.entities.Apple;
 import com.HLF.entities.Banana;
 import com.HLF.entities.BlueEnemy;
@@ -96,7 +98,7 @@ public class World {
 						// Apple
 						Apple apple = new Apple(xx*16,yy*16,16,16,0,Entity.Apple_Sprite);
 						Game.entities.add(apple);
-						Game.fruits++;
+						Game.totalFruits++;
 					}else if(pixelAtual == 0xFFFFB594) {
 						// Cookie
 						Cookie fruit = new Cookie(xx*16,yy*16,16,16,0,Entity.Cookie_Sprite);
@@ -106,17 +108,17 @@ public class World {
 						// Banana
 						Banana fruit = new Banana(xx*16,yy*16,16,16,0,Entity.Banana_Sprite);
 						Game.entities.add(fruit);
-						Game.fruits++;
+						Game.totalFruits++;
 					}else if(pixelAtual == 0xFFFF00DC) {
 						// Strawberry
 						Strawberry fruit = new Strawberry(xx*16,yy*16,16,16,0,Entity.Strawberry_Sprite);
 						Game.entities.add(fruit);
-						Game.fruits++;
+						Game.totalFruits++;
 					}else if(pixelAtual == 0xFF4CFF00) {
 						// Kiwi
 						Kiwi fruit = new Kiwi(xx*16,yy*16,16,16,0,Entity.Kiwi_Sprite);
 						Game.entities.add(fruit);
-						Game.fruits++;
+						Game.totalFruits++;
 					}	
 				}
 			}

@@ -10,12 +10,14 @@ import com.HLF.world.Vector2i;
 
 public class OrangeEnemy extends Enemy{
 	
+	public static int oDir = 1;
+	
 	public static boolean oVulnerable = false;
 	public int oVulFrames = 0, oBlinkFrames = 0;
 	public boolean oAnimation = false, oBlink = false;
 	
 	public static boolean oDead = false;
-	public static int orangeTime = 360; // orange respawn time
+	public static int orangeTime = 300; // orange respawn time
 	public static int curOrangeTime = 0;
 
 	public OrangeEnemy(int x, int y, int width, int height, int speed, BufferedImage sprite) {
@@ -82,19 +84,19 @@ public class OrangeEnemy extends Enemy{
 		
 		if(!oVulnerable) {
 			
-			if(Enemy.dir == 1) {
+			if(oDir == 1) {
 				g.drawImage(Entity.ENEMY_ORANGE_R,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 2) {
+			else if(oDir == 2) {
 				g.drawImage(Entity.ENEMY_ORANGE_L,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 3) {
+			else if(oDir == 3) {
 				g.drawImage(Entity.ENEMY_ORANGE_D,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 4) {
+			else if(oDir == 4) {
 				g.drawImage(Entity.ENEMY_ORANGE_U,this.getX(),this.getY(),null);
 			}
 		}

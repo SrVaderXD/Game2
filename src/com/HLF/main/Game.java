@@ -34,7 +34,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	private BufferedImage image;
 	
-
 	public static List<Entity> entities;
 	public static List<Enemy> enemies;
 	public static Spritesheet spritesheet;
@@ -45,7 +44,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	public UI ui;
 	
-	public static int fruits = 0;
+	public static int fruits = 0, totalFruits = 0;
 	public static int score = 0;
 	
 	public Game(){
@@ -62,8 +61,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		world = new World("/level1.png");
 		eSpawn = new EnemySpawn();
 		ui = new UI();
-		
-		
 		entities.add(player);		
 	}
 	
@@ -105,7 +102,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		}
 		
 		eSpawn.tick();
-		
 	}
 	
 	public void render(){
@@ -156,7 +152,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 				frames = 0;
 				timer+=1000;
 			}
-			
 		}
 		
 		stop();

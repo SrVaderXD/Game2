@@ -10,8 +10,19 @@ import com.HLF.main.Game;
 public class UI {
 
 	public void render(Graphics g) {
+		score(g);
+		fruits(g);
+	}
+	
+	private void score(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(new Font("arial",Font.BOLD,18));
-		g.drawString("Score: "+Game.score+"/"+Game.fruits, 10, 20);
+		g.drawString("Score: "+Game.score, 120, 20);
+	}
+	
+	private void fruits(Graphics g) {
+		g.setColor(Color.white);
+		g.setFont(new Font("arial",Font.BOLD,18));
+		g.drawString("Fruits: "+Game.fruits+"/"+Game.totalFruits, 10, 20);
 	}
 }

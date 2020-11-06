@@ -104,7 +104,7 @@ public class Player extends Entity{
 			
 			if(current instanceof Apple) {
 				if(isColliding(this, current)) {
-					Game.score++;
+					Game.fruits++;
 					Game.entities.remove(i);
 					return;
 				}
@@ -112,7 +112,7 @@ public class Player extends Entity{
 			
 			if(current instanceof Banana) {
 				if(isColliding(this, current)) {
-					Game.score++;
+					Game.fruits++;
 					Game.entities.remove(i);
 					return;
 				}
@@ -120,7 +120,7 @@ public class Player extends Entity{
 				
 			if(current instanceof Strawberry) {
 				if(isColliding(this, current)) {
-					Game.score++;
+					Game.fruits++;
 					Game.entities.remove(i);
 					return;
 				}
@@ -128,7 +128,7 @@ public class Player extends Entity{
 				
 			if(current instanceof Kiwi) {
 				if(isColliding(this, current)) {
-					Game.score++;
+					Game.fruits++;
 					Game.entities.remove(i);
 					return;
 				}

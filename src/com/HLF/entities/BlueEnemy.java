@@ -9,12 +9,14 @@ import com.HLF.world.Vector2i;
 
 public class BlueEnemy extends Enemy{
 	
+	public static int bDir = 1 ;
+	
 	public static boolean bVulnerable = false;
 	public int bVulFrames = 0, bBlinkFrames = 0;
 	public boolean bAnimation = false, bBlink = false;
 
 	public static boolean bDead = false;
-	public static int blueTime = 360; // blue respawn time
+	public static int blueTime = 300; // blue respawn time
 	public static int curBlueTime = 0;
 	
 	public BlueEnemy(int x, int y, int width, int height, int speed, BufferedImage sprite) {
@@ -81,19 +83,19 @@ public class BlueEnemy extends Enemy{
 		
 		if(!bVulnerable) {
 			
-			if(Enemy.dir == 1) {
+			if(bDir == 1) {
 				g.drawImage(Entity.ENEMY_BLUE_R,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 2) {
+			else if(bDir == 2) {
 				g.drawImage(Entity.ENEMY_BLUE_L,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 3) {
+			else if(bDir == 3) {
 				g.drawImage(Entity.ENEMY_BLUE_D,this.getX(),this.getY(),null);
 			}
 			
-			else if(Enemy.dir == 4) {
+			else if(bDir == 4) {
 				g.drawImage(Entity.ENEMY_BLUE_U,this.getX(),this.getY(),null);
 			}
 		}

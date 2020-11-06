@@ -130,20 +130,30 @@ public class Entity {
 				//yprev = y;
 				if(x < target.x * 16) { //right
 					x+=speed;
-					Enemy.dir = 1;
+					BlueEnemy.bDir = 1;
+					OrangeEnemy.oDir = 1;
+					PinkEnemy.pDir = 1;
+					RedEnemy.rDir = 1;
 				}else if(x > target.x * 16) { //left
 					x-=speed;
-					Enemy.dir = 2;
+					BlueEnemy.bDir = 2;
+					OrangeEnemy.oDir = 2;
+					PinkEnemy.pDir = 2;
+					RedEnemy.rDir = 2;
 				}
-				
 				if(y < target.y * 16) { //down
 					y+=speed;
-					Enemy.dir = 3;
+					BlueEnemy.bDir = 3;
+					OrangeEnemy.oDir = 3;
+					PinkEnemy.pDir = 3;
+					RedEnemy.rDir = 3;
 				}else if(y > target.y * 16) { //up
 					y-=speed;
-					Enemy.dir = 4;
+					BlueEnemy.bDir = 4;
+					OrangeEnemy.oDir = 4;
+					PinkEnemy.pDir = 4;
+					RedEnemy.rDir = 4;
 				}
-				
 				if(x == target.x * 16 && y == target.y * 16) {
 					path.remove(path.size() - 1);
 				}

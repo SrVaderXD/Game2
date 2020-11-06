@@ -4,8 +4,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class Enemy extends Entity{
-
-	public static int dir = 1;
 	
 	public Enemy(int x, int y, int width, int height,int speed, BufferedImage sprite) {
 		super(x, y, width, height,speed,sprite);

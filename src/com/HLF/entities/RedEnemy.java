@@ -140,6 +140,7 @@ public class RedEnemy extends Enemy{
 			rDead = true;
 			Game.entities.remove(this);
 			Game.enemies.remove(this);
+			Game.score += 600;
 		}
 	}
 }

@@ -138,6 +138,7 @@ public class BlueEnemy extends Enemy{
 			bDead = true;
 			Game.entities.remove(this);
 			Game.enemies.remove(this);
+			Game.score += 600;
 		}
 	}
 

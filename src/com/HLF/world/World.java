@@ -10,6 +10,7 @@ import com.HLF.entities.Apple;
 import com.HLF.entities.Banana;
 import com.HLF.entities.BlueEnemy;
 import com.HLF.entities.Cookie;
+import com.HLF.entities.Dot;
 import com.HLF.entities.Entity;
 import com.HLF.entities.Kiwi;
 import com.HLF.entities.OrangeEnemy;
@@ -119,7 +120,11 @@ public class World {
 						Kiwi fruit = new Kiwi(xx*16,yy*16,16,16,0,Entity.Kiwi_Sprite);
 						Game.entities.add(fruit);
 						Game.totalFruits++;
-					}	
+					}else if(pixelAtual == 0xFFFFB27F) {
+						// Dot
+						Dot fruit = new Dot(xx*16,yy*16,16,16,0,Entity.Dot_Sprite);
+						Game.entities.add(fruit);
+					}
 				}
 			}
 		} catch (IOException e) {

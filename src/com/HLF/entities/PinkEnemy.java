@@ -138,6 +138,7 @@ public class PinkEnemy extends Enemy{
 			pDead = true;
 			Game.entities.remove(this);
 			Game.enemies.remove(this);
+			Game.score += 600;	
 		}
 	}
 

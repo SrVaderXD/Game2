@@ -46,6 +46,7 @@ public class Entity {
 	public static BufferedImage Banana_Sprite = Game.spritesheet.getSprite(64,112,16,16);
 	public static BufferedImage Strawberry_Sprite = Game.spritesheet.getSprite(80,112,16,16);
 	public static BufferedImage Kiwi_Sprite = Game.spritesheet.getSprite(96,112,16,16);
+	public static BufferedImage Dot_Sprite = Game.spritesheet.getSprite(112,112,16,16);
 	
 	
 	protected double x;

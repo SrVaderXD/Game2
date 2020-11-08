@@ -106,6 +106,7 @@ public class Player extends Entity{
 				if(isColliding(this, current)) {
 					Game.fruits++;
 					Game.entities.remove(i);
+					Game.score += 75;
 					return;
 				}
 			}
@@ -114,6 +115,7 @@ public class Player extends Entity{
 				if(isColliding(this, current)) {
 					Game.fruits++;
 					Game.entities.remove(i);
+					Game.score += 100;
 					return;
 				}
 			}
@@ -122,6 +124,7 @@ public class Player extends Entity{
 				if(isColliding(this, current)) {
 					Game.fruits++;
 					Game.entities.remove(i);
+					Game.score += 125;
 					return;
 				}
 			}
@@ -130,6 +133,7 @@ public class Player extends Entity{
 				if(isColliding(this, current)) {
 					Game.fruits++;
 					Game.entities.remove(i);
+					Game.score += 200;
 					return;
 				}
 			}
@@ -141,6 +145,14 @@ public class Player extends Entity{
 					PinkEnemy.pVulnerable = true;
 					RedEnemy.rVulnerable = true;
 					Game.entities.remove(i);
+					return;
+				}
+			}
+			
+			if(current instanceof Dot) {
+				if(isColliding(this, current)) {
+					Game.entities.remove(i);
+					Game.score += 5;
 					return;
 				}
 			}

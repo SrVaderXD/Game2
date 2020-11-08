@@ -138,7 +138,8 @@ public class OrangeEnemy extends Enemy{
 			
 			oDead = true;
 			Game.entities.remove(this);
-			Game.enemies.remove(this);
+			Game.enemies.remove(this);			
+			Game.score += 600;
 		}
 	}
 }

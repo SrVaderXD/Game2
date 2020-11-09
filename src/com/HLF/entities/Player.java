@@ -22,6 +22,8 @@ public class Player extends Entity{
 	
 	private int frames = 0, maxFrames = 5, index = 0, maxIndex = 2; // variables to animate pacman
 	private boolean moved = false;
+	
+	public static int life = 3;
 
 	public Player(int x, int y, int width, int height,double speed,BufferedImage sprite) {
 		super(x, y, width, height,speed,sprite);

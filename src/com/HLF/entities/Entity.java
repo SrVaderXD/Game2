@@ -85,7 +85,6 @@ public class Entity {
 		
 	};
 	
-	
 	public void updateCamera() {
 		Camera.x = Camera.clamp(this.getX() - (Game.WIDTH/2),0,World.WIDTH*16 - Game.WIDTH);
 		Camera.y = Camera.clamp(this.getY() - (Game.HEIGHT/2),0,World.HEIGHT*16 - Game.HEIGHT);
@@ -126,8 +125,6 @@ public class Entity {
 		if(path != null) {
 			if(path.size() > 0) {
 				Vector2i target = path.get(path.size() - 1).tile;
-				//xprev = x;
-				//yprev = y;
 				if(x < target.x * 16) { //right
 					x+=speed;
 					BlueEnemy.bDir = 1;

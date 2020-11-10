@@ -13,14 +13,18 @@ public class Player extends Entity{
 	
 	public static int dir = 1;
 	
+	public static boolean death = false;
+	
 	public BufferedImage CIRCLE_SPRITE;
 	
 	private BufferedImage rightPlayer[]; // Direction players sprite
 	private BufferedImage leftPlayer[];
 	private BufferedImage upPlayer[];
 	private BufferedImage downPlayer[];
+	private BufferedImage deathAnimation[];
 	
-	private int frames = 0, maxFrames = 5, index = 0, maxIndex = 2; // variables to animate pacman
+	private int walkFrames = 0,walkMaxFrames = 5,walkIndex = 0,walkMaxIndex = 2; // variables to animate pacman walk
+	private int deathFrames = 0,deathMaxFrames = 5,deathIndex = 0,deathMaxIndex = 7; // variables to animate pacman death
 	private boolean moved = false;
 	
 	public static int life = 3;
@@ -32,6 +36,7 @@ public class Player extends Entity{
 		leftPlayer = new BufferedImage[3];
 		upPlayer = new BufferedImage[3];
 		downPlayer = new BufferedImage[3];
+		deathAnimation = new BufferedImage[8];
 		
 		
 		for(int i = 0; i < 3; i++) { // right
@@ -49,14 +54,14 @@ public class Player extends Entity{
 		for(int i = 0; i < 3; i++) { // down
 			downPlayer[i] = Game.spritesheet.getSprite(96 + (i*16), 48, 16, 16);
 		}
+		
+		for(int i = 0; i < 8; i++) { // death animation
+			deathAnimation[i] = Game.spritesheet.getSprite(32 + (i*16), 128, 16, 16);
+		}
 	}
 	
 	public void tick(){
 		depth = 1;
-		
-		//System.out.println("xatual: "+x+" "+"yatual: "+y);
-		//System.out.println("xdepois: "+x+" "+"ydepois: "+y);
-		
 		moved = false;
 		
 		if(right && World.isFree((int)(x+speed),this.getY())) {
@@ -81,15 +86,24 @@ public class Player extends Entity{
 		}
 		
 		if(moved) {
-			frames++;
-			if(frames == maxFrames) {
-				frames = 0;
-				index++;
-				if(index > maxIndex) 
-					index = 0;
+			walkFrames++;
+			if(walkFrames == walkMaxFrames) {
+				walkFrames = 0;
+				walkIndex++;
+				if(walkIndex > walkMaxIndex) 
+					walkIndex = 0;
 			}
 		}
-		//death();
+			
+		if(death) {
+			deathFrames++;
+			if(deathFrames == deathMaxFrames) {
+				deathFrames = 0;
+				deathIndex++;
+				if(deathIndex > deathMaxIndex) 
+					deathIndex = 0;
+			}
+		}
 		checkCollisionWithItems();
 		checkNextStage();
 	}
@@ -136,6 +150,7 @@ public class Player extends Entity{
 					Game.fruits++;
 					Game.entities.remove(i);
 					Game.score += 200;
+					death = true;
 					return;
 				}
 			}
@@ -164,20 +179,27 @@ public class Player extends Entity{
 	
 	public void render(Graphics g) {
 		
-		if(dir == 1) {
-			g.drawImage(rightPlayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+		if(!death) {
+		
+			if(dir == 1) {
+				g.drawImage(rightPlayer[walkIndex], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			}
+			
+			else if(dir == 2){
+				g.drawImage(leftPlayer[walkIndex], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			}
+			
+			else if(dir == 3){
+				g.drawImage(upPlayer[walkIndex], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			}
+			
+			else if(dir == 4){
+				g.drawImage(downPlayer[walkIndex], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			}
 		}
 		
-		else if(dir == 2){
-			g.drawImage(leftPlayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-		}
-		
-		else if(dir == 3){
-			g.drawImage(upPlayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-		}
-		
-		else if(dir == 4){
-			g.drawImage(downPlayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+		else {
+			g.drawImage(deathAnimation[deathIndex], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		}
 	}
 }

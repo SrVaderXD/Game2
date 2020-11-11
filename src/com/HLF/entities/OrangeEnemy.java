@@ -78,6 +78,9 @@ public class OrangeEnemy extends Enemy{
 		}
 		
 		collisionWithPlayer();
+		if(Player.death) {
+			Game.entities.remove(this);
+		}
 	}
 	
 	public void render(Graphics g) {
@@ -130,8 +133,7 @@ public class OrangeEnemy extends Enemy{
 	public void collisionWithPlayer() {
 		
 		if(!oVulnerable && Entity.isColliding(this, Game.player)) {
-			
-			//World.restartGanes("/level1.png");
+			Player.death = true;
 		}
 		
 		else if(oVulnerable && Entity.isColliding(this, Game.player)) {

@@ -16,7 +16,7 @@ public class Tile {
 	public static BufferedImage TILE_WALL_TYPE_6 = Game.spritesheet.getSprite(16,80,16,16);
 	public static BufferedImage TILE_WALL_TYPE_7 = Game.spritesheet.getSprite(16,96,16,16);
 	public static BufferedImage TILE_WALL_TYPE_8 = Game.spritesheet.getSprite(16,112,16,16);
-	public static BufferedImage TILE_WALL_TYPE_9 = Game.spritesheet.getSprite(16,128,16,16);
+	public static BufferedImage TILE_WALL_TYPE_9 = Game.spritesheet.getSprite(0,128,16,16);
 	public static BufferedImage TILE_WALL_TYPE_10 = Game.spritesheet.getSprite(16,144,16,16);
 
 	private BufferedImage sprite;

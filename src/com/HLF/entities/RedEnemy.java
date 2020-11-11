@@ -78,6 +78,9 @@ public class RedEnemy extends Enemy{
 		}
 		
 		collisionWithPlayer();
+		if(Player.death) {
+			Game.entities.remove(this);
+		}
 	}
 	
 	public void render(Graphics g) {
@@ -131,8 +134,7 @@ public class RedEnemy extends Enemy{
 	public void collisionWithPlayer() {
 		
 		if(!rVulnerable && Entity.isColliding(this, Game.player)) {
-			
-			//World.restartGanes("/level1.png");
+			Player.death = true;
 		}
 		
 		else if(rVulnerable && Entity.isColliding(this, Game.player)) {

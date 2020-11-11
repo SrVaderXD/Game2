@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
-import com.HLF.entities.Player;
 import com.HLF.main.Game;
 
 public class UI {
@@ -35,7 +33,7 @@ public class UI {
 	public void life(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(new Font("arial",Font.BOLD,18));
-		g.drawString("x"+Player.life, 400, 20);
+		g.drawString("x"+Game.life, 400, 20);
 		g.drawImage(LIFE_ICON,370,0,32,32, null);
 	}
 }

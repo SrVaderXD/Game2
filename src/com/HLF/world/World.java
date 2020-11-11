@@ -3,9 +3,8 @@ package com.HLF.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
-
 import com.HLF.entities.Apple;
 import com.HLF.entities.Banana;
 import com.HLF.entities.BlueEnemy;
@@ -15,8 +14,10 @@ import com.HLF.entities.Entity;
 import com.HLF.entities.Kiwi;
 import com.HLF.entities.OrangeEnemy;
 import com.HLF.entities.PinkEnemy;
+import com.HLF.entities.Player;
 import com.HLF.entities.RedEnemy;
 import com.HLF.entities.Strawberry;
+import com.HLF.graficos.Spritesheet;
 import com.HLF.main.Game;
 
 public class World {
@@ -152,19 +153,19 @@ public class World {
 				(tiles[x4 + (y4*World.WIDTH)] instanceof WallTile));
 	}
 	
-	/*public static void restartGanes(String map) {
+	public static void restartGanes(String level) {
 
-		Game.fruits = 0;
+		Game.totalFruits = 0;
 		Game.entities.clear();
 		Game.entities = new ArrayList<Entity>();
 		Game.spritesheet = new Spritesheet("/spritesheet.png");
 		
 		Game.player = new Player(0,0,16,16,2,Game.spritesheet.getSprite(32,0,16,16));
 		Game.entities.add(Game.player);
-		Game.world = new World(map);
+		Game.world = new World("/"+level);
 
 		return;
-	}*/
+	}
 	
 	public void render(Graphics g){
 		int xstart = Camera.x >> 4;

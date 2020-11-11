@@ -31,6 +31,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	public static final int WIDTH = 240;
 	public static final int HEIGHT = 240;
 	public static final int SCALE = 2;
+	public static int life = 3;
+	
+	private int framesRestart = 0;
+	
+	private int currentLevel = 1;
 	
 	private BufferedImage image;
 	
@@ -102,6 +107,19 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		}
 		
 		eSpawn.tick();
+		
+		if(Player.death) {
+		
+			framesRestart++;
+			
+			if(framesRestart == 64) {
+				framesRestart = 0;
+				Player.death = false;
+				life --;
+				String level = "level"+currentLevel+".png";
+				World.restartGanes(level);
+			}
+		}
 	}
 	
 	public void render(){

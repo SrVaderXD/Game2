@@ -120,6 +120,12 @@ public class Game extends Canvas implements Runnable,KeyListener{
 				World.restartGanes(level);
 			}
 		}
+		
+		if(life == 0) {
+			life = 3;
+			String level = "level"+currentLevel+".png";
+			World.restartGanes(level);
+		}
 	}
 	
 	public void render(){

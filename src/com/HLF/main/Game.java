@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	public static JFrame frame;
 	private Thread thread;
 	private boolean isRunning = true;
-	public static final int WIDTH = 240;
+	public static final int WIDTH = 352;
 	public static final int HEIGHT = 240;
 	public static final int SCALE = 2;
 	public static int life = 3;
@@ -63,7 +63,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		player = new Player(0,0,16,16,2,spritesheet.getSprite(32,0,16,16));
 		entities = new ArrayList<Entity>();
 		enemies = new ArrayList<Enemy>();
-		world = new World("/level1.png");
+		world = new World("/level2.png");
 		eSpawn = new EnemySpawn();
 		ui = new UI();
 		entities.add(player);		
@@ -117,6 +117,8 @@ public class Game extends Canvas implements Runnable,KeyListener{
 				Player.death = false;
 				life --;
 				String level = "level"+currentLevel+".png";
+				score = 0;
+				fruits = 0;
 				World.restartGanes(level);
 			}
 		}
@@ -124,6 +126,8 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		if(life == 0) {
 			life = 3;
 			String level = "level"+currentLevel+".png";
+			score = 0;
+			fruits = 0;
 			World.restartGanes(level);
 		}
 	}

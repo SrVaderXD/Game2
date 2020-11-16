@@ -21,19 +21,19 @@ public class UI {
 	private void score(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(new Font("arial",Font.BOLD,18));
-		g.drawString("Score: "+Game.score, 120, 20);
+		g.drawString("Score: "+Game.score, 300, 20);
 	}
 	
 	private void fruits(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(new Font("arial",Font.BOLD,18));
-		g.drawString("Fruits: "+Game.fruits+"/"+Game.totalFruits, 10, 20);
+		g.drawString("Fruits: "+Game.fruits+"/"+Game.totalFruits, 30, 20);
 	}
 	
 	public void life(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(new Font("arial",Font.BOLD,18));
-		g.drawString("x"+Game.life, 400, 20);
-		g.drawImage(LIFE_ICON,370,0,32,32, null);
+		g.drawString("x"+Game.life, 650, 20);
+		g.drawImage(LIFE_ICON,620,0,32,32, null);
 	}
 }

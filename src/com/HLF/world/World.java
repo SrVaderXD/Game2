@@ -4,7 +4,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
+
 import com.HLF.entities.Apple;
 import com.HLF.entities.Banana;
 import com.HLF.entities.BlueEnemy;
@@ -38,40 +40,42 @@ public class World {
 			for(int xx = 0; xx < map.getWidth(); xx++){
 				for(int yy = 0; yy < map.getHeight(); yy++){
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
-					tiles[xx + (yy * WIDTH)] = new FloorTile(xx*16,yy*16,Tile.TILE_FLOOR);
+					tiles[xx + (yy * WIDTH)] = new FloorTile(xx*16,yy*16,Tile.FLOOR_TILE);
 					if(pixelAtual == 0xFF000000){
 						//Floor
-						tiles[xx + (yy * WIDTH)] = new FloorTile(xx*16,yy*16,Tile.TILE_FLOOR);
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx*16,yy*16,Tile.FLOOR_TILE);
 					}else if(pixelAtual == 0xFFFFFFFF){
 						//Wall type 1
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_1);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_1);
 					}else if(pixelAtual == 0xFFC0C0C0) {
 						//Wall type 2
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_2);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_2);
 					}else if(pixelAtual == 0xFFA0A0A0) {
 						//Wall type 3
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_3);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_3);
 					}else if(pixelAtual == 0xFF808080) {
 						//Wall type 4
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_4);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_4);
 					}else if(pixelAtual == 0xFF303030) {
 						//Wall type 5
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_5);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_5);
 					}else if(pixelAtual == 0xFF606060) {
 						//Wall type 6
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_6);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_6);
 					}else if(pixelAtual == 0xFF404040) {
 						//Wall type 7
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_7);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_7);
 					}else if(pixelAtual == 0xFF7F3F3F) {
 						//Wall type 8
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_8);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_8);
 					}else if(pixelAtual == 0xFF7F593F) {
 						//Wall type 9
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_9);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_9);
 					}else if(pixelAtual == 0xFF7F743F) {
 						//Wall type 10
-						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.TILE_WALL_TYPE_10);
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_10);
+					}else if(pixelAtual == 0xFF4B0000) {
+						tiles[xx + (yy * WIDTH)] = new GateTile(xx*16,yy*16,Tile.GATE_TILE);
 					}else if(pixelAtual == 0xFF0026FF) {
 						//Player
 						Game.player.setX(xx*16);
@@ -104,8 +108,7 @@ public class World {
 					}else if(pixelAtual == 0xFFFFB594) {
 						// Cookie
 						Cookie fruit = new Cookie(xx*16,yy*16,16,16,0,Entity.Cookie_Sprite);
-						Game.entities.add(fruit);
-						
+						Game.entities.add(fruit);						
 					}else if(pixelAtual == 0xFFFFD800) {
 						// Banana
 						Banana fruit = new Banana(xx*16,yy*16,16,16,0,Entity.Banana_Sprite);
@@ -147,10 +150,16 @@ public class World {
 		int x4 = (xnext+TILE_SIZE-1) / TILE_SIZE;
 		int y4 = (ynext+TILE_SIZE-1) / TILE_SIZE;
 		
-		return !((tiles[x1 + (y1*World.WIDTH)] instanceof WallTile) ||
-				(tiles[x2 + (y2*World.WIDTH)] instanceof WallTile) ||
-				(tiles[x3 + (y3*World.WIDTH)] instanceof WallTile) ||
-				(tiles[x4 + (y4*World.WIDTH)] instanceof WallTile));
+		return !(
+				(tiles[x1 + (y1*World.WIDTH)] instanceof WallTile || 
+						tiles[x1 + (y1*World.WIDTH)] instanceof GateTile) ||
+				(tiles[x2 + (y2*World.WIDTH)] instanceof WallTile || 
+						tiles[x2 + (y2*World.WIDTH)] instanceof GateTile) ||
+				(tiles[x3 + (y3*World.WIDTH)] instanceof WallTile ||
+						tiles[x3 + (y3*World.WIDTH)] instanceof GateTile) ||
+				(tiles[x4 + (y4*World.WIDTH)] instanceof WallTile ||
+						tiles[x4 + (y4*World.WIDTH)] instanceof GateTile)
+				);
 	}
 	
 	public static void restartGanes(String level) {

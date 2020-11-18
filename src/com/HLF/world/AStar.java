@@ -31,8 +31,8 @@ public class AStar {
 	
 	public static List<Node> findPath(World world, Vector2i start, Vector2i end){
 		lastTime = System.currentTimeMillis();
-		List<Node> openList = new ArrayList<Node>(); //possiveis posições
-		List<Node> closedList = new ArrayList<Node>(); //posições já verficadas
+		List<Node> openList = new ArrayList<Node>(); 
+		List<Node> closedList = new ArrayList<Node>(); 
 		
 		Node current = new Node(start,null,0,getDistance(start,end));
 		openList.add(current);

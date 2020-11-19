@@ -37,10 +37,12 @@ public class World {
 			HEIGHT = map.getHeight();
 			tiles = new Tile[map.getWidth() * map.getHeight()];
 			map.getRGB(0, 0, map.getWidth(), map.getHeight(),pixels, 0, map.getWidth());
+			
 			for(int xx = 0; xx < map.getWidth(); xx++){
 				for(int yy = 0; yy < map.getHeight(); yy++){
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
 					tiles[xx + (yy * WIDTH)] = new FloorTile(xx*16,yy*16,Tile.FLOOR_TILE);
+					
 					if(pixelAtual == 0xFF000000){
 						//Floor
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx*16,yy*16,Tile.FLOOR_TILE);
@@ -74,7 +76,20 @@ public class World {
 					}else if(pixelAtual == 0xFF7F743F) {
 						//Wall type 10
 						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_10);
+					}else if(pixelAtual == 0xFF000037) {
+						//Wall type 11
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_11);
+					}else if(pixelAtual == 0xFF370000) {
+						//Wall type 12
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_12);
+					}else if(pixelAtual == 0xFF003700) {
+						//Wall type 13
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_13);
+					}else if(pixelAtual == 0xFF373737) {
+						//Wall type 14
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_14);
 					}else if(pixelAtual == 0xFF4B0000) {
+						//Gate
 						tiles[xx + (yy * WIDTH)] = new GateTile(xx*16,yy*16,Tile.GATE_TILE);
 					}else if(pixelAtual == 0xFF0026FF) {
 						//Player
@@ -101,31 +116,31 @@ public class World {
 						Game.entities.add(e);
 						Game.enemies.add(e);
 					}else if(pixelAtual == 0xFF7F0000) {
-						// Apple
+						//Apple
 						Apple apple = new Apple(xx*16,yy*16,16,16,0,Entity.Apple_Sprite);
 						Game.entities.add(apple);
 						Game.totalFruits++;
 					}else if(pixelAtual == 0xFFFFB594) {
-						// Cookie
+						//Cookie
 						Cookie fruit = new Cookie(xx*16,yy*16,16,16,0,Entity.Cookie_Sprite);
 						Game.entities.add(fruit);						
 					}else if(pixelAtual == 0xFFFFD800) {
-						// Banana
+						//Banana
 						Banana fruit = new Banana(xx*16,yy*16,16,16,0,Entity.Banana_Sprite);
 						Game.entities.add(fruit);
 						Game.totalFruits++;
 					}else if(pixelAtual == 0xFFFF00DC) {
-						// Strawberry
+						//Strawberry
 						Strawberry fruit = new Strawberry(xx*16,yy*16,16,16,0,Entity.Strawberry_Sprite);
 						Game.entities.add(fruit);
 						Game.totalFruits++;
 					}else if(pixelAtual == 0xFF4CFF00) {
-						// Kiwi
+						//Kiwi
 						Kiwi fruit = new Kiwi(xx*16,yy*16,16,16,0,Entity.Kiwi_Sprite);
 						Game.entities.add(fruit);
 						Game.totalFruits++;
 					}else if(pixelAtual == 0xFFFFB27F) {
-						// Dot
+						//Dot
 						Dot fruit = new Dot(xx*16,yy*16,16,16,0,Entity.Dot_Sprite);
 						Game.entities.add(fruit);
 					}
@@ -158,8 +173,7 @@ public class World {
 				(tiles[x3 + (y3*World.WIDTH)] instanceof WallTile ||
 						tiles[x3 + (y3*World.WIDTH)] instanceof GateTile) ||
 				(tiles[x4 + (y4*World.WIDTH)] instanceof WallTile ||
-						tiles[x4 + (y4*World.WIDTH)] instanceof GateTile)
-				);
+						tiles[x4 + (y4*World.WIDTH)] instanceof GateTile));
 	}
 	
 	public static void restartGanes(String level) {
@@ -191,6 +205,5 @@ public class World {
 				tile.render(g);
 			}
 		}
-	}
-	
+	}	
 }

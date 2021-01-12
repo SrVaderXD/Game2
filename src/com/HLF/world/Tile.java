@@ -22,7 +22,9 @@ public class Tile {
 	public static BufferedImage WALL_TILE_TYPE_12 = Game.spritesheet.getSprite(0,48,16,16);
 	public static BufferedImage WALL_TILE_TYPE_13 = Game.spritesheet.getSprite(0,64,16,16);
 	public static BufferedImage WALL_TILE_TYPE_14 = Game.spritesheet.getSprite(0,80,16,16);
-	public static BufferedImage GATE_TILE = Game.spritesheet.getSprite(0,96,16,16);
+	public static BufferedImage GATE_TILE_TYPE_1 = Game.spritesheet.getSprite(0,96,16,16);
+	public static BufferedImage GATE_TILE_TYPE_2 = Game.spritesheet.getSprite(0,112,16,16);
+
 
 	private BufferedImage sprite;
 	private int x,y;

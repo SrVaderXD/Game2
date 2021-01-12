@@ -63,14 +63,14 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		player = new Player(0,0,16,16,2,spritesheet.getSprite(32,0,16,16));
 		entities = new ArrayList<Entity>();
 		enemies = new ArrayList<Enemy>();
-		world = new World("/level1.png");
+		world = new World("/level2.png");
 		eSpawn = new EnemySpawn();
 		ui = new UI();
 		entities.add(player);		
 	}
 	
 	public void initFrame(){
-		frame = new JFrame("Pac-Man");
+		frame = new JFrame("PacMan");
 		frame.add(this);
 		frame.setResizable(false);
 		frame.pack();

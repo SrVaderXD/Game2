@@ -18,7 +18,7 @@ public class EnemySpawn {
 			if(RedEnemy.curRedTime == RedEnemy.redTime) {
 				RedEnemy.rVulnerable = false;
 				RedEnemy.curRedTime = 0;
-				RedEnemy r = new RedEnemy(16,16,16,16,1,Entity.ENEMY_RED_R);
+				RedEnemy r = new RedEnemy(306,160,16,16,1,Entity.ENEMY_RED_R);
 				Game.entities.add(r);
 				RedEnemy.rDead = false;
 			}
@@ -30,7 +30,7 @@ public class EnemySpawn {
 			if(PinkEnemy.curPinkTime == PinkEnemy.pinkTime) {
 				PinkEnemy.pVulnerable = false;
 				PinkEnemy.curPinkTime = 0;
-				PinkEnemy p = new PinkEnemy(16,16,16,16,1,Entity.ENEMY_PINK_R);
+				PinkEnemy p = new PinkEnemy(322,176,16,16,1,Entity.ENEMY_PINK_R);
 				Game.entities.add(p);
 				PinkEnemy.pDead = false;
 			}
@@ -42,7 +42,7 @@ public class EnemySpawn {
 			if(OrangeEnemy.curOrangeTime == OrangeEnemy.orangeTime) {
 				OrangeEnemy.oVulnerable = false;
 				OrangeEnemy.curOrangeTime = 0;
-				OrangeEnemy o = new OrangeEnemy(16,16,16,16,1,Entity.ENEMY_ORANGE_R);
+				OrangeEnemy o = new OrangeEnemy(306,176,16,16,1,Entity.ENEMY_ORANGE_R);
 				Game.entities.add(o);
 				OrangeEnemy.oDead = false;
 			}
@@ -54,7 +54,7 @@ public class EnemySpawn {
 			if(BlueEnemy.curBlueTime == BlueEnemy.blueTime) {
 				BlueEnemy.bVulnerable = false;
 				BlueEnemy.curBlueTime = 0;
-				BlueEnemy b = new BlueEnemy(16,16,16,16,1,Entity.ENEMY_BLUE_R);
+				BlueEnemy b = new BlueEnemy(322,160,16,16,1,Entity.ENEMY_BLUE_R);
 				Game.entities.add(b);
 				BlueEnemy.bDead = false;
 			}

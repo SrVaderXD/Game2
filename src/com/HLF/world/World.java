@@ -89,8 +89,11 @@ public class World {
 						//Wall type 14
 						tiles[xx + (yy * WIDTH)] = new WallTile(xx*16,yy*16,Tile.WALL_TILE_TYPE_14);
 					}else if(pixelAtual == 0xFF4B0000) {
-						//Gate
-						tiles[xx + (yy * WIDTH)] = new GateTile(xx*16,yy*16,Tile.GATE_TILE);
+						//Gate type 1
+						tiles[xx + (yy * WIDTH)] = new GateTile(xx*16,yy*16,Tile.GATE_TILE_TYPE_1);
+					}else if(pixelAtual == 0xFF420000){
+						//Gate type 2
+						tiles[xx + (yy * WIDTH)] = new GateTile(xx*16,yy*16,Tile.GATE_TILE_TYPE_2);
 					}else if(pixelAtual == 0xFF0026FF) {
 						//Player
 						Game.player.setX(xx*16);

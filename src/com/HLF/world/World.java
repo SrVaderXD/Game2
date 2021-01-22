@@ -179,10 +179,15 @@ public class World {
 						tiles[x4 + (y4*World.WIDTH)] instanceof GateTile));
 	}
 	
-	public static void restartGanes(String level) {
+	public static void restartGame(String level) {
 
 		Game.totalFruits = 0;
+		Game.fruits = 0;
 		Game.entities.clear();
+		BlueEnemy.bVulnerable = false;
+		OrangeEnemy.oVulnerable = false;
+		PinkEnemy.pVulnerable = false;
+		RedEnemy.rVulnerable = false;
 		Game.entities = new ArrayList<Entity>();
 		Game.spritesheet = new Spritesheet("/spritesheet.png");
 		

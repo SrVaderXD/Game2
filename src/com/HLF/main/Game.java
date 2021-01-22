@@ -63,7 +63,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		player = new Player(0,0,16,16,2,spritesheet.getSprite(32,0,16,16));
 		entities = new ArrayList<Entity>();
 		enemies = new ArrayList<Enemy>();
-		world = new World("/level5.png");
+		world = new World("/level"+currentLevel+".png");
 		eSpawn = new EnemySpawn();
 		ui = new UI();
 		entities.add(player);		
@@ -119,17 +119,20 @@ public class Game extends Canvas implements Runnable,KeyListener{
 				String level = "level"+currentLevel+".png";
 				score = 0;
 				fruits = 0;
-				World.restartGanes(level);
+				World.restartGame(level);
 			}
 		}
 		
 		if(life == 0) {
+			currentLevel = 1;
 			life = 3;
 			String level = "level"+currentLevel+".png";
 			score = 0;
 			fruits = 0;
-			World.restartGanes(level);
+			World.restartGame(level);
 		}
+		
+		nextLevel();
 	}
 	
 	public void render(){
@@ -227,5 +230,16 @@ public class Game extends Canvas implements Runnable,KeyListener{
 
 	public void keyTyped(KeyEvent e) {
 		
+	}
+	
+	public void nextLevel() {
+		if(fruits == totalFruits) {
+			
+			currentLevel++;
+	
+			String level = "level"+currentLevel+".png";
+			World.restartGame(level);		
+				
+		}
 	}
 }

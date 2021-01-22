@@ -153,10 +153,6 @@ public class Player extends Entity{
 					OrangeEnemy.oVulnerable = true;
 					PinkEnemy.pVulnerable = true;
 					RedEnemy.rVulnerable = true;
-					BlueEnemy.curBlueTime = 0;
-					OrangeEnemy.curOrangeTime = 0;
-					PinkEnemy.curPinkTime = 0;
-					RedEnemy.curRedTime = 0;
 					Game.entities.remove(i);
 					return;
 				}

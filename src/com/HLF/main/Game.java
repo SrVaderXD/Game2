@@ -35,7 +35,9 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	private int framesRestart = 0;
 	
-	private int currentLevel = 1;
+	private int currentLevel = 1, maxLevel = 5;
+	
+	public static boolean nextLevel = false;
 	
 	private BufferedImage image;
 	
@@ -235,6 +237,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	public void nextLevel() {
 		if(fruits == totalFruits) {
 			
+			nextLevel = true;
 			currentLevel++;
 	
 			String level = "level"+currentLevel+".png";

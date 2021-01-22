@@ -12,6 +12,7 @@ import com.HLF.entities.Banana;
 import com.HLF.entities.BlueEnemy;
 import com.HLF.entities.Cookie;
 import com.HLF.entities.Dot;
+import com.HLF.entities.EnemySpawn;
 import com.HLF.entities.Entity;
 import com.HLF.entities.Kiwi;
 import com.HLF.entities.OrangeEnemy;
@@ -180,7 +181,7 @@ public class World {
 	}
 	
 	public static void restartGame(String level) {
-
+		
 		Game.totalFruits = 0;
 		Game.fruits = 0;
 		Game.entities.clear();
@@ -189,6 +190,8 @@ public class World {
 		PinkEnemy.pVulnerable = false;
 		RedEnemy.rVulnerable = false;
 		Game.entities = new ArrayList<Entity>();
+		Game.eSpawn = new EnemySpawn();
+		//Game.nextLevel = false;
 		Game.spritesheet = new Spritesheet("/spritesheet.png");
 		
 		Game.player = new Player(0,0,16,16,2,Game.spritesheet.getSprite(32,0,16,16));

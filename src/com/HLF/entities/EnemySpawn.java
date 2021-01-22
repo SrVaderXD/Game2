@@ -12,6 +12,26 @@ public class EnemySpawn {
 
 	public void respawn() {
 		
+		if(Game.nextLevel) {
+			RedEnemy.rVulnerable = false;
+			RedEnemy.curRedTime = 0;
+			RedEnemy.rDead = false;
+			
+			PinkEnemy.pVulnerable = false;
+			PinkEnemy.curPinkTime = 0;
+			PinkEnemy.pDead = false;
+			
+			OrangeEnemy.oVulnerable = false;
+			OrangeEnemy.curOrangeTime = 0;
+			OrangeEnemy.oDead = false;
+			
+			BlueEnemy.bVulnerable = false;
+			BlueEnemy.curBlueTime = 0;
+			BlueEnemy.bDead = false;
+			
+			Game.nextLevel = false;
+		}
+		
 		if(RedEnemy.rDead) {
 			RedEnemy.curRedTime++;
 			

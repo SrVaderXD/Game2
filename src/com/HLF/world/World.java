@@ -191,7 +191,6 @@ public class World {
 		RedEnemy.rVulnerable = false;
 		Game.entities = new ArrayList<Entity>();
 		Game.eSpawn = new EnemySpawn();
-		//Game.nextLevel = false;
 		Game.spritesheet = new Spritesheet("/spritesheet.png");
 		
 		Game.player = new Player(0,0,16,16,2,Game.spritesheet.getSprite(32,0,16,16));

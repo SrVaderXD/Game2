@@ -50,9 +50,7 @@ public class BlueEnemy extends Enemy{
 			
 			if(path == null || path.size() == 0) {
 				Vector2i start = new Vector2i(((int)(x/16)),((int)(y/16)));
-				Vector2i end = new Vector2i(xEscape(((int)(Game.player.x/16)),((int)(x/16))), 
-						yEscape(((int)(Game.player.y/16)),((int)(y/16))));
-				
+				Vector2i end = new Vector2i(((int)(Enemy.xEscape/16)),((int)(Enemy.yEscape/16)));
 				path = AStar.findPath(Game.world, start, end);
 			}
 		
@@ -60,8 +58,7 @@ public class BlueEnemy extends Enemy{
 			
 			if(x % 16 == 0 && y % 16 == 0) {
 				Vector2i start = new Vector2i(((int)(x/16)),((int)(y/16)));
-				Vector2i end = new Vector2i(xEscape(((int)(Game.player.x/16)),((int)(x/16))), 
-						yEscape(((int)(Game.player.y/16)),((int)(y/16))));
+				Vector2i end = new Vector2i(((int)(Enemy.xEscape/16)),((int)(Enemy.yEscape/16)));
 				path = AStar.findPath(Game.world, start, end);
 			}
 			

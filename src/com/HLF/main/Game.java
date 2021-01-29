@@ -3,7 +3,9 @@ package com.HLF.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -33,11 +35,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	public static final int SCALE = 2;
 	public static int life = 3;
 	
-	private int framesRestart = 0;
+	private int framesRestart = 0, framesGameOver = 0;
 	
 	private int currentLevel = 1, maxLevel = 5;
 	
-	public static boolean nextLevel = false;
+	public static boolean nextLevel = false, GameOver;
 	
 	private BufferedImage image;
 	
@@ -51,8 +53,14 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	public UI ui;
 	
+	public Menu menu;
+	public End end;
+	public static String GameState = "Menu";
+	
 	public static int fruits = 0, totalFruits = 0;
 	public static int score = 0;
+	
+	public static boolean restart = false;
 	
 	public Game(){
 		addKeyListener(this);
@@ -68,6 +76,8 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		world = new World("/level"+currentLevel+".png");
 		eSpawn = new EnemySpawn();
 		ui = new UI();
+		menu = new Menu();
+		end = new End();
 		entities.add(player);		
 	}
 	
@@ -103,38 +113,81 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	public void tick(){
 		
-		for(int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
-			e.tick();
-		}
+		if(GameState == "Normal") {
 		
-		eSpawn.tick();
-		
-		if(Player.death) {
-		
-			framesRestart++;
+			for(int i = 0; i < entities.size(); i++) {
+				Entity e = entities.get(i);
+				e.tick();
+			}
 			
-			if(framesRestart == 64) {
-				framesRestart = 0;
-				Player.death = false;
-				life --;
+			eSpawn.tick();
+			
+			if(Player.death) {
+			
+				framesRestart++;
+				
+				if(framesRestart == 64) {
+					framesRestart = 0;
+					Player.death = false;
+					life --;
+					String level = "level"+currentLevel+".png";
+					score = 0;
+					fruits = 0;
+					World.restartGame(level);
+				}
+			}
+			
+			if(life == 0) {
+				currentLevel = 1;
+				life = 3;
 				String level = "level"+currentLevel+".png";
 				score = 0;
 				fruits = 0;
 				World.restartGame(level);
 			}
+			
+			nextLevel();
+			
+			if(currentLevel == maxLevel) {
+				GameState = "TheEnd";
+				currentLevel = 1;
+			}
 		}
 		
-		if(life == 0) {
-			currentLevel = 1;
-			life = 3;
-			String level = "level"+currentLevel+".png";
-			score = 0;
-			fruits = 0;
-			World.restartGame(level);
+		else if(GameState == "End") {
+			entities.clear();
+			framesGameOver++;
+			if(framesGameOver == 30) {
+				framesGameOver = 0;
+				if(GameOver)
+					GameOver = false;
+				else
+					GameOver = true;
+			}
+		
+			if(restart) {
+				restart = false;
+				GameState = "Normal";
+				String map = "map"+currentLevel+".png";
+				World.restartGame(map);
+			}
 		}
 		
-		nextLevel();
+		else if(GameState == "Menu") {
+			menu.tick();
+		}
+		
+		else if(GameState == "TheEnd") {
+			entities.clear();
+			end.tick();
+			
+			if(restart) {
+				restart = false;
+				GameState = "Normal";
+				String map = "map"+currentLevel+".png";
+				World.restartGame(map);
+			}
+		}
 	}
 	
 	public void render(){
@@ -158,6 +211,29 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0,WIDTH*SCALE,HEIGHT*SCALE,null);
 		ui.render(g);
+		
+		if(GameState == "End") {
+			Graphics2D g2 = (Graphics2D)g;
+			g2.setColor(new Color(0,0,0,100));
+			g2.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
+			g.setFont(new Font("arial", Font.BOLD, 72));
+			g.setColor(Color.white);
+			g.drawString("GAME OVER", WIDTH/2 + 8, HEIGHT/2 + 130);
+			g.setFont(new Font("arial", Font.BOLD, 36));
+			g.setColor(Color.white);
+			if(GameOver)
+				g.drawString("Press 'R' to restart", WIDTH/2 + 72, HEIGHT/2 + 170);
+		}
+		
+		else if(GameState == "Menu") {
+			menu.render(g);
+		}
+		
+		else if(GameState == "TheEnd") {
+			entities.clear();
+			end.render(g);
+		}
+		
 		bs.show();
 	}
 	
@@ -191,43 +267,96 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
-				e.getKeyCode() == KeyEvent.VK_D){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			player.right = true;
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT ||
-				e.getKeyCode() == KeyEvent.VK_A){
+			
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
 			player.left = true;
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_UP ||
-				e.getKeyCode() == KeyEvent.VK_W){
+		if(e.getKeyCode() == KeyEvent.VK_UP){
 			player.up = true;
+			if(GameState == "Menu")
+				menu.up = true;
 			
-		}else if(e.getKeyCode() == KeyEvent.VK_DOWN ||
-				e.getKeyCode() == KeyEvent.VK_S) {
+			if(GameState == "TheEnd")
+				end.up = true;
+			
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.down = true;
 			
+			if(GameState == "Menu")
+				menu.down = true;
+			
+			if(GameState == "TheEnd")
+				end.down = true;
 		}
-	
+		
+		if(e.getKeyCode() == KeyEvent.VK_R) {
+				restart = true;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if(GameState == "Menu")
+				menu.enter = true;
+			
+			if(GameState == "TheEnd")
+				end.enter = true;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			if(GameState == "Normal" || GameState == "StageClear") {
+				GameState = "Menu";
+				menu.pause = true;
+			}
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
-				e.getKeyCode() == KeyEvent.VK_D){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			player.right = false;
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT ||
-				e.getKeyCode() == KeyEvent.VK_A){
+			
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
 			player.left = false;
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_UP ||
-				e.getKeyCode() == KeyEvent.VK_W){
+		if(e.getKeyCode() == KeyEvent.VK_UP){
 			player.up = false;
-		}else if(e.getKeyCode() == KeyEvent.VK_DOWN ||
-				e.getKeyCode() == KeyEvent.VK_S) {
+			
+			if(GameState == "Menu")
+				menu.up = false;
+			
+			if(GameState == "TheEnd")
+				end.up = false;
+			
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.down = false;
+			
+			if(GameState == "Menu")
+				menu.down = false;
+			
+			if(GameState == "TheEnd")
+				end.down = false;
 		}
 		
+		if(e.getKeyCode() == KeyEvent.VK_R) {
+			restart = false;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if(GameState == "Menu")
+				menu.enter = false;
+			
+			if(GameState == "TheEnd")
+				end.enter = false;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			if(GameState == "Normal" || GameState == "StageClear") {
+				GameState = "Menu";
+				menu.pause = false;
+			}
+		}
 	}
 
 	public void keyTyped(KeyEvent e) {

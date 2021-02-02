@@ -58,14 +58,14 @@ public class Menu {
 	
 	public void render(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
-		g2.setColor(new Color(0,0,0, 100));
+		g2.setColor(new Color(0,0,0,200));
 		g2.fillRect(0, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);
 		
 		if(!tutorial) {
 			
 			g.setColor(Color.red);
 			g.setFont(new Font("arial", Font.BOLD, 56));
-			g.drawString("Shuriken Strike", Game.WIDTH / 2 + 20, Game.HEIGHT / 2);
+			g.drawString("Pacman", Game.WIDTH / 2 + 60, Game.HEIGHT / 2 - 30);
 			
 			//Menu options
 			g.setColor(Color.white);
@@ -73,48 +73,41 @@ public class Menu {
 			
 			
 			if(!pause)
-				g.drawString("Start Game", Game.WIDTH / 2 + 134, Game.HEIGHT / 2 + 100);
+				g.drawString("Start Game", Game.WIDTH / 2 + 80, Game.HEIGHT / 2 + 70);
 			
 			else
 				g.drawString("Resume", Game.WIDTH / 2 + 154, Game.HEIGHT / 2 + 100);
 			
-			g.drawString("How to play", Game.WIDTH / 2 + 126, Game.HEIGHT / 2 + 220);
+			g.drawString("How to play", Game.WIDTH / 2 + 80, Game.HEIGHT / 2 + 190);
 			
-			g.drawString("Exit", Game.WIDTH / 2 + 189, Game.HEIGHT / 2 + 340);
+			g.drawString("Exit", Game.WIDTH / 2 + 140, Game.HEIGHT / 2 + 310);
 		
 		
 			if(options[currentOption] == "Start Game") {
-				g.drawString(">", Game.WIDTH / 2 + 80, Game.HEIGHT / 2 + 100);
+				g.drawString(">", Game.WIDTH / 2 + 50, Game.HEIGHT / 2 + 70);
 			}
 			
 			else if(options[currentOption] == "How to play") {
-				g.drawString(">", Game.WIDTH / 2 + 80, Game.HEIGHT / 2 + 220);
+				g.drawString(">", Game.WIDTH / 2 + 50, Game.HEIGHT / 2 + 190);
 			}
 			
 			else if(options[currentOption] == "Exit") {
-				g.drawString(">", Game.WIDTH / 2 + 120, Game.HEIGHT / 2 + 340);
+				g.drawString(">", Game.WIDTH / 2 + 110, Game.HEIGHT / 2 + 310);
 			}
 		}
 		
 		if(tutorial) {
 			currentOption = 3 ;
-			g.setColor(Color.BLACK);
+			g.setColor(Color.WHITE);
 			g.setFont(new Font("arial", Font.BOLD, 26));
-			g.drawString("W,A,S,D - MOVE", Game.WIDTH /2 - 100, Game.HEIGHT / 2 + 35);
-			g.drawString("ENTER - SELECT OPTIONS", Game.WIDTH /2 - 100, Game.HEIGHT / 2 + 195);
-			g.drawString("SPACE - THROW SHURIKEN", Game.WIDTH / 2 -100, Game.HEIGHT / 2 + 115);
-			g.drawString("ESC - PAUSE", Game.WIDTH / 2 - 100, Game.HEIGHT / 2 + 275);
-			g.drawString("Goal: ", Game.WIDTH / 2 + 280, Game.HEIGHT / 2 + -20);
-			g.drawString("Kill all the enemies and", Game.WIDTH / 2 + 280, Game.HEIGHT / 2 + 10);
-			g.drawString("step into the portal to", Game.WIDTH / 2 + 280, Game.HEIGHT / 2 + 40);
-			g.drawString("advance to next the stage", Game.WIDTH / 2 + 280, Game.HEIGHT / 2 + 70);
+
 
 			g.setColor(Color.white);
 			g.setFont(new Font("arial", Font.BOLD, 36));
-			g.drawString("Back", Game.WIDTH / 2 + 460, Game.HEIGHT / 2 + 370);
+			g.drawString("Back", Game.WIDTH / 2, Game.HEIGHT / 2);
 			
 			if(options[currentOption] == "Back") {
-				g.drawString(">", Game.WIDTH / 2 + 389, Game.HEIGHT / 2 + 370);
+				g.drawString(">", Game.WIDTH / 2, Game.HEIGHT / 2);
 			}
 		}
 	}

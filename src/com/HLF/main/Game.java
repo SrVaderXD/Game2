@@ -55,6 +55,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	public Menu menu;
 	public End end;
+	public Tutorial tuto;
 	public static String GameState = "Menu";
 	
 	public static int fruits = 0, totalFruits = 0;
@@ -78,6 +79,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		ui = new UI();
 		menu = new Menu();
 		end = new End();
+		tuto = new Tutorial();
 		entities.add(player);		
 	}
 	
@@ -177,7 +179,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			menu.tick();
 		}
 		
-		else if(GameState == "TheEnd") {
+		else if(GameState == "Tutorial") {
+			tuto.tick();
+		}
+		
+		else if(GameState == "End") {
 			entities.clear();
 			end.tick();
 			
@@ -212,7 +218,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		g.drawImage(image, 0, 0,WIDTH*SCALE,HEIGHT*SCALE,null);
 		ui.render(g);
 		
-		if(GameState == "End") {
+		if(GameState == "GameOver") {
 			Graphics2D g2 = (Graphics2D)g;
 			g2.setColor(new Color(0,0,0,100));
 			g2.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
@@ -229,7 +235,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			menu.render(g);
 		}
 		
-		else if(GameState == "TheEnd") {
+		else if(GameState == "Tutorial") {
+			tuto.render(g);
+		}
+		
+		else if(GameState == "End") {
 			entities.clear();
 			end.render(g);
 		}
@@ -279,8 +289,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(GameState == "Menu")
 				menu.up = true;
 			
-			if(GameState == "TheEnd")
+			if(GameState == "End")
 				end.up = true;
+			
+			if(GameState == "Tutorial")
+				tuto.up = true;
 			
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.down = true;
@@ -288,8 +301,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(GameState == "Menu")
 				menu.down = true;
 			
-			if(GameState == "TheEnd")
+			if(GameState == "End")
 				end.down = true;
+			
+			if(GameState == "Tutorial")
+				tuto.down = true;
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_R) {
@@ -300,12 +316,15 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(GameState == "Menu")
 				menu.enter = true;
 			
-			if(GameState == "TheEnd")
+			if(GameState == "End")
 				end.enter = true;
+			
+			if(GameState == "Tutorial")
+				tuto.enter = true;
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-			if(GameState == "Normal" || GameState == "StageClear") {
+			if(GameState == "Normal") {
 				GameState = "Menu";
 				menu.pause = true;
 			}
@@ -326,8 +345,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(GameState == "Menu")
 				menu.up = false;
 			
-			if(GameState == "TheEnd")
+			if(GameState == "End")
 				end.up = false;
+			
+			if(GameState == "Tutorial")
+				tuto.up = false;
 			
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.down = false;
@@ -335,8 +357,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(GameState == "Menu")
 				menu.down = false;
 			
-			if(GameState == "TheEnd")
+			if(GameState == "End")
 				end.down = false;
+			
+			if(GameState == "Tutorial")
+				tuto.down = false;
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_R) {
@@ -347,12 +372,15 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(GameState == "Menu")
 				menu.enter = false;
 			
-			if(GameState == "TheEnd")
+			if(GameState == "End")
 				end.enter = false;
+			
+			if(GameState == "Tutorial")
+				tuto.enter = false;
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-			if(GameState == "Normal" || GameState == "StageClear") {
+			if(GameState == "Normal") {
 				GameState = "Menu";
 				menu.pause = false;
 			}

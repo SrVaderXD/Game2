@@ -57,7 +57,7 @@ public class Menu {
 		g2.setColor(new Color(0,0,0,200));
 		g2.fillRect(0, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);
 			
-		g.setColor(Color.red);
+		g.setColor(Color.yellow);
 		g.setFont(new Font("arial", Font.BOLD, 56));
 		g.drawString("Pacman", Game.WIDTH / 2 + 60, Game.HEIGHT / 2 - 30);
 			

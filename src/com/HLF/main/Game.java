@@ -56,7 +56,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	public Menu menu;
 	public End end;
 	public Tutorial tuto;
-	public static String GameState = "Menu";
+	public static String GameState = "Tutorial";
 	
 	public static int fruits = 0, totalFruits = 0;
 	public static int score = 0;

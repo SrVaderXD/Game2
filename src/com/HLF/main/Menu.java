@@ -70,7 +70,7 @@ public class Menu {
 			g.drawString("Start Game", Game.WIDTH / 2 + 80, Game.HEIGHT / 2 + 70);
 			
 		else
-			g.drawString("Resume", Game.WIDTH / 2 + 154, Game.HEIGHT / 2 + 100);
+			g.drawString("Resume", Game.WIDTH / 2 + 100, Game.HEIGHT / 2 + 70);
 			
 		g.drawString("How to play", Game.WIDTH / 2 + 80, Game.HEIGHT / 2 + 190);
 			

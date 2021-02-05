@@ -56,7 +56,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	public Menu menu;
 	public End end;
 	public Tutorial tuto;
-	public static String GameState = "Tutorial";
+	public static String GameState = "Menu";
 	
 	public static int fruits = 0, totalFruits = 0;
 	public static int score = 0;
@@ -114,7 +114,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	}
 	
 	public void tick(){
-		
 		if(GameState == "Normal") {
 		
 			for(int i = 0; i < entities.size(); i++) {
@@ -137,15 +136,10 @@ public class Game extends Canvas implements Runnable,KeyListener{
 					fruits = 0;
 					World.restartGame(level);
 				}
-			}
-			
-			if(life == 0) {
-				currentLevel = 1;
-				life = 3;
-				String level = "level"+currentLevel+".png";
-				score = 0;
-				fruits = 0;
-				World.restartGame(level);
+				
+				if(life == 0) {
+					GameState = "GameOver";
+				}
 			}
 			
 			nextLevel();
@@ -156,7 +150,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			}
 		}
 		
-		else if(GameState == "End") {
+		else if(GameState == "GameOver") {
 			entities.clear();
 			framesGameOver++;
 			if(framesGameOver == 30) {
@@ -166,12 +160,13 @@ public class Game extends Canvas implements Runnable,KeyListener{
 				else
 					GameOver = true;
 			}
-		
+			
 			if(restart) {
 				restart = false;
 				GameState = "Normal";
-				String map = "map"+currentLevel+".png";
-				World.restartGame(map);
+				String level = "level"+currentLevel+".png";
+				World.restartGame(level);
+				life = 3;
 			}
 		}
 		
@@ -183,16 +178,9 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			tuto.tick();
 		}
 		
-		else if(GameState == "End") {
+		else if(GameState == "TheEnd") {
 			entities.clear();
 			end.tick();
-			
-			if(restart) {
-				restart = false;
-				GameState = "Normal";
-				String map = "map"+currentLevel+".png";
-				World.restartGame(map);
-			}
 		}
 	}
 	
@@ -220,15 +208,15 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		
 		if(GameState == "GameOver") {
 			Graphics2D g2 = (Graphics2D)g;
-			g2.setColor(new Color(0,0,0,100));
+			g2.setColor(new Color(0,0,0,200));
 			g2.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
 			g.setFont(new Font("arial", Font.BOLD, 72));
 			g.setColor(Color.white);
-			g.drawString("GAME OVER", WIDTH/2 + 8, HEIGHT/2 + 130);
+			g.drawString("GAME OVER", WIDTH/2 - 30, HEIGHT/2 + 130);
 			g.setFont(new Font("arial", Font.BOLD, 36));
 			g.setColor(Color.white);
 			if(GameOver)
-				g.drawString("Press 'R' to restart", WIDTH/2 + 72, HEIGHT/2 + 170);
+				g.drawString("Press 'R' to restart", WIDTH/2 + 30, HEIGHT/2 + 170);
 		}
 		
 		else if(GameState == "Menu") {

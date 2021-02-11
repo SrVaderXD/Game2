@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Menu {
+	
+	public static BufferedImage LIFE_ICON = Game.spritesheet.getSprite(0,16,16,16);
 	
 	public String[] options = {"Start Game", "How to play", "Exit"};
 	
@@ -59,7 +62,7 @@ public class Menu {
 			
 		g.setColor(Color.yellow);
 		g.setFont(new Font("arial", Font.BOLD, 56));
-		g.drawString("Pacman", Game.WIDTH / 2 + 60, Game.HEIGHT / 2 - 30);
+		g.drawString("Pacman", Game.WIDTH/2 + 60, Game.HEIGHT/2 - 30);
 			
 		//Menu options
 		g.setColor(Color.white);
@@ -67,26 +70,26 @@ public class Menu {
 			
 			
 		if(!pause)
-			g.drawString("Start Game", Game.WIDTH / 2 + 80, Game.HEIGHT / 2 + 70);
+			g.drawString("Start Game", Game.WIDTH/2 + 80, Game.HEIGHT/2 + 70);
 			
 		else
-			g.drawString("Resume", Game.WIDTH / 2 + 100, Game.HEIGHT / 2 + 70);
+			g.drawString("Resume", Game.WIDTH/2 + 100, Game.HEIGHT/2 + 70);
 			
-		g.drawString("How to play", Game.WIDTH / 2 + 80, Game.HEIGHT / 2 + 190);
+		g.drawString("How to play", Game.WIDTH/2 + 80, Game.HEIGHT/2 + 190);
 			
-		g.drawString("Exit", Game.WIDTH / 2 + 140, Game.HEIGHT / 2 + 310);
+		g.drawString("Exit", Game.WIDTH/2 + 140, Game.HEIGHT/2 + 310);
 		
 		
 		if(options[currentOption] == "Start Game") {
-			g.drawString(">", Game.WIDTH / 2 + 50, Game.HEIGHT / 2 + 70);
+			g.drawImage(LIFE_ICON,Game.WIDTH/2 + 45, Game.HEIGHT/2 + 43,32,32,null);
 		}
 			
 		else if(options[currentOption] == "How to play") {
-			g.drawString(">", Game.WIDTH / 2 + 50, Game.HEIGHT / 2 + 190);
+			g.drawImage(LIFE_ICON,Game.WIDTH/2 + 45, Game.HEIGHT/2 + 163,32,32,null);
 		}
 			
 		else if(options[currentOption] == "Exit") {
-			g.drawString(">", Game.WIDTH / 2 + 110, Game.HEIGHT / 2 + 310);
+			g.drawImage(LIFE_ICON,Game.WIDTH/2 + 105, Game.HEIGHT/2 + 283,32,32,null);
 		}
 	}
 }

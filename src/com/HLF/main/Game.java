@@ -144,10 +144,18 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			
 			nextLevel();
 			
-			if(currentLevel == maxLevel) {
-				GameState = "TheEnd";
+			if(currentLevel > maxLevel) {
+				GameState = "End";
 				currentLevel = 1;
 			}
+		}
+		
+		if(restart) {
+			restart = false;
+			GameState = "Normal";
+			String level = "level"+currentLevel+".png";
+			World.restartGame(level);
+			life = 3;
 		}
 		
 		else if(GameState == "GameOver") {
@@ -160,14 +168,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 				else
 					GameOver = true;
 			}
-			
-			if(restart) {
-				restart = false;
-				GameState = "Normal";
-				String level = "level"+currentLevel+".png";
-				World.restartGame(level);
-				life = 3;
-			}
 		}
 		
 		else if(GameState == "Menu") {
@@ -178,7 +178,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			tuto.tick();
 		}
 		
-		else if(GameState == "TheEnd") {
+		else if(GameState == "End") {
 			entities.clear();
 			end.tick();
 		}

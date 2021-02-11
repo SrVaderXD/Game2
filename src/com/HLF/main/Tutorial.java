@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Tutorial {
+	
+	public static BufferedImage LIFE_ICON = Game.spritesheet.getSprite(0,16,16,16);
 
 	public String[] options = {"Back"};
 	
@@ -54,8 +57,8 @@ public class Tutorial {
 		g.drawString("Back", Game.WIDTH/2 + 400, Game.HEIGHT/2 + 300);
 		
 		if(options[currentOption] == "Back") {
-			g.drawString(">", Game.WIDTH/2 + 370, Game.HEIGHT/2 + 300);
-
+			g.drawImage(LIFE_ICON,Game.WIDTH/2 + 365, Game.HEIGHT/2 + 273,32,32,null);
+		}
 		
 		g.setColor(Color.white);
 		g.setFont(new Font("arial", Font.BOLD, 22));
@@ -66,6 +69,5 @@ public class Tutorial {
 		g.drawString("> EAT COOKIES TO LET THE PHANTOMS VULNERABLE", Game.WIDTH/2 - 160, Game.HEIGHT/2 + 180);
 		g.drawString("> BECAREFUL WITH THE GATES", Game.WIDTH/2 - 160, Game.HEIGHT/2 + 240);
 		g.drawString("> HAVE FUN =)", Game.WIDTH/2 - 160, Game.HEIGHT/2 + 300);
-		}
 	}
 }

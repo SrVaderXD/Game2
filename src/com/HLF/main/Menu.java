@@ -35,7 +35,7 @@ public class Menu {
 		}
 		
 		if(enter) {
-			//Sound.backGround.loop();
+			Sound.begin.play();
 			enter = false;
 			
 			if(options[currentOption] == "Start Game" || options[currentOption] == "Resume") {

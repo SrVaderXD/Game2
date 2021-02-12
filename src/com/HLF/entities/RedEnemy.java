@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.HLF.main.Game;
+import com.HLF.main.Sound;
 import com.HLF.world.AStar;
 import com.HLF.world.Camera;
 import com.HLF.world.Vector2i;
@@ -132,10 +133,11 @@ public class RedEnemy extends Enemy{
 		
 		if(!rVulnerable && Entity.isColliding(this, Game.player)) {
 			Player.death = true;
+			Player.deathMusic = true;
 		}
 		
 		else if(rVulnerable && Entity.isColliding(this, Game.player)) {
-			
+			Sound.eatGhost.play();
 			rDead = true;
 			Game.entities.remove(this);
 			Game.enemies.remove(this);

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.HLF.main.Game;
+import com.HLF.main.Sound;
 import com.HLF.world.Camera;
 import com.HLF.world.World;
 
@@ -14,6 +15,7 @@ public class Player extends Entity{
 	public static int dir = 1;
 	
 	public static boolean death = false;
+	public static boolean deathMusic = false;
 	
 	private BufferedImage rightPlayer[]; // Direction players sprite
 	private BufferedImage leftPlayer[];
@@ -23,7 +25,7 @@ public class Player extends Entity{
 	
 	private int walkFrames = 0,walkMaxFrames = 5,walkIndex = 0,walkMaxIndex = 2; // variables to animate pacman walk
 	private int deathFrames = 0,deathMaxFrames = 7,deathIndex = 0,deathMaxIndex = 8; // variables to animate pacman death
-	private boolean moved = false;
+	public boolean moved = false;
 
 	public Player(int x, int y, int width, int height,double speed,BufferedImage sprite) {
 		super(x, y, width, height,speed,sprite);
@@ -59,6 +61,7 @@ public class Player extends Entity{
 	public void tick(){
 		depth = 1;
 		moved = false;
+		
 		if(!death) {
 		
 			if(right && World.isFree((int)(x+speed),this.getY())) {
@@ -116,6 +119,7 @@ public class Player extends Entity{
 					Game.fruits++;
 					Game.entities.remove(i);
 					Game.score += 75;
+					Sound.eatFruit.play();
 					return;
 				}
 			}
@@ -125,6 +129,7 @@ public class Player extends Entity{
 					Game.fruits++;
 					Game.entities.remove(i);
 					Game.score += 100;
+					Sound.eatFruit.play();
 					return;
 				}
 			}
@@ -134,6 +139,7 @@ public class Player extends Entity{
 					Game.fruits++;
 					Game.entities.remove(i);
 					Game.score += 125;
+					Sound.eatFruit.play();
 					return;
 				}
 			}
@@ -143,6 +149,7 @@ public class Player extends Entity{
 					Game.fruits++;
 					Game.entities.remove(i);
 					Game.score += 200;
+					Sound.eatFruit.play();
 					return;
 				}
 			}
@@ -154,6 +161,7 @@ public class Player extends Entity{
 					PinkEnemy.pVulnerable = true;
 					RedEnemy.rVulnerable = true;
 					Game.entities.remove(i);
+					Sound.jojoRef.play();
 					return;
 				}
 			}

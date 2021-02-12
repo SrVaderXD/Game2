@@ -115,7 +115,18 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	public void tick(){
 		if(GameState == "Normal") {
-		
+
+			if(score >= 10000) {
+				life++;
+				score = 0;
+				Sound.extraLife.play();
+			}
+			
+			if(Player.deathMusic){
+				Player.deathMusic = false;
+				Sound.death.play();
+			}			
+
 			for(int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
 				e.tick();
@@ -240,7 +251,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
-		int frames = 0;
+		//int frames = 0;
 		double timer = System.currentTimeMillis();
 		requestFocus();
 		while(isRunning){
@@ -250,13 +261,13 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(delta >= 1) {
 				tick();
 				render();
-				frames++;
+				//frames++;
 				delta--;
 			}
 			
 			if(System.currentTimeMillis() - timer >= 1000){
-				System.out.println("FPS: "+ frames);
-				frames = 0;
+				//System.out.println("FPS: "+ frames);
+				//frames = 0;
 				timer+=1000;
 			}
 		}

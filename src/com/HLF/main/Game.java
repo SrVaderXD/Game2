@@ -37,7 +37,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	private int framesRestart = 0, framesGameOver = 0;
 	
-	private int currentLevel = 1, maxLevel = 5;
+	private int currentLevel = 1, maxLevel = 6;
 	
 	public static boolean nextLevel = false, GameOver;
 	
@@ -154,19 +154,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			}
 			
 			nextLevel();
-			
-			if(currentLevel > maxLevel) {
-				GameState = "End";
-				currentLevel = 1;
-			}
-		}
-		
-		if(restart) {
-			restart = false;
-			GameState = "Normal";
-			String level = "level"+currentLevel+".png";
-			World.restartGame(level);
-			life = 3;
 		}
 		
 		else if(GameState == "GameOver") {
@@ -192,6 +179,14 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		else if(GameState == "End") {
 			entities.clear();
 			end.tick();
+		}
+		
+		if(restart) {
+			restart = false;
+			GameState = "Normal";
+			String level = "level"+currentLevel+".png";
+			World.restartGame(level);
+			life = 3;
 		}
 	}
 	
@@ -276,14 +271,14 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){
 			player.right = true;
 			
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){
 			player.left = true;
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_UP){
+		if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W){
 			player.up = true;
 			if(GameState == "Menu")
 				menu.up = true;
@@ -294,7 +289,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(GameState == "Tutorial")
 				tuto.up = true;
 			
-		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
 			player.down = true;
 			
 			if(GameState == "Menu")
@@ -331,14 +326,14 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){
 			player.right = false;
 			
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){
 			player.left = false;
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_UP){
+		if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W){
 			player.up = false;
 			
 			if(GameState == "Menu")
@@ -350,7 +345,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			if(GameState == "Tutorial")
 				tuto.up = false;
 			
-		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
 			player.down = false;
 			
 			if(GameState == "Menu")
@@ -391,13 +386,19 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	}
 	
 	public void nextLevel() {
+		
 		if(fruits == totalFruits) {
 			
 			nextLevel = true;
 			currentLevel++;
+			
+			if(currentLevel >= maxLevel) {
+				GameState = "End";
+				currentLevel = 1;				
+			}
 	
 			String level = "level"+currentLevel+".png";
-			World.restartGame(level);		
+			World.restartGame(level);
 				
 		}
 	}

@@ -1,0 +1,43 @@
+1.new items (X)
+
+2.ghosts in vulnerable mode(they will run from player) (X)-> need improvements
+
+3.vulnerable ghosts (X)
+
+4.ghosts(animation) (X) -> they will look up, down, left and right
+
+5.pacman(animation) (X) -> up,down,left and right // remember here the variable dir
+
+6.differents enemys classes must be created(for animation, and i need to think how to do it) (X)
+
+7.fruits(different scores) (X)
+
+8.collision with new fruits (X) // replicate collision for apple
+
+9.enemy collision(vulnerable and normal state, obs: in vulnerable they will give score points) (X)
+
+10.enemy respawn after been eaten(need to search) (X) -> dankicode minecraft
+
+11.score (X)
+
+12.scores system (X)
+
+13.lifes(pacmans face near the score) (X)
+
+14.death animation (X)
+
+15.death system + simple restart system (X)
+
+16.simple game over (X)
+
+17.stages (X)
+
+18.next stage and restart (X)
+
+19.improve the enemy ia (X) // they will run to spawn area
+
+20.a simple menu for the begining of the game and for game-over/the end (X)
+
+21.sound system ( )
+
+22.jojo's reference after eating the vulnerable fruit(giorno theme) ( )
